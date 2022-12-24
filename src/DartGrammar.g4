@@ -12,9 +12,17 @@ statement: ifStatement
          | declaration';'
          | assignment';'
          | expression';'
+         | function
          ;
 
+condition: TRUE | FALSE | comparison;
+comparison: ID ('<' | '<=' | '>' | '>=' | '==' | '!=') ID
+          | ID ('<' | '<=' | '>' | '>=' | '==' | '!=') DIGITS
+          | ID ('==' | '!=') CHARACTERS
+          ;
 
+
+//conditions process
 ifStatement: IF '(' condition ')' body (elseIfStatement* elseStatement)*;
 elseIfStatement: ELSE IF '(' condition ')' body;
 elseStatement: ELSE body;
@@ -26,13 +34,20 @@ case: (CASE DIGITS | CASE CHARACTERS)':' caseBody;
 defaultCase: DEFAULT':' caseBody;
 caseBody: statements* BREAK';';
 
+
+//loops
 whileStatement: WHILE '(' condition ')' body;
+
 doWhileStatement: DO body WHILE '(' condition ');';
+
 forStatement: FOR '(' initialCondition ';' condition ';' increment')' body;
 initialCondition: type? assignment;
 increment: expression;
+
 foreachStatement: FOREACH '(' varOrType ID 'in' ID ')' body;
 
+
+//variables
 type: INT | DOUBLE | STRING | LIST | DYNAMIC | BOOL | OBJECT;
 varOrType: VAR | type;
 declaration: LATE? FINAL type? ID initialization?
@@ -42,12 +57,23 @@ declaration: LATE? FINAL type? ID initialization?
 initialization: '=' (DIGITS | CHARACTERS | expression);
 assignment: ID '=' (DIGITS | CHARACTERS | expression);
 
-condition: TRUE | FALSE | comparison ;
-comparison: ID ('<' | '<=' | '>' | '>=' | '==' | '!=') ID
-          | ID ('<' | '<=' | '>' | '>=' | '==' | '!=') DIGITS
-          | ID ('==' | '!=') CHARACTERS
-          ;
 
+//functions
+voidOrType: VOID | type;
+function: voidOrType? ID arguments functionBody;
+//فصلت هالقد مشان قصة الفواصل وين لازم تنحط ووين لا وتركت فراغ مشان اذا ما حط ولا ارغيومنت
+arguments: '(' (positionalNamed | positional | named | ) ')';
+positional: positionalArguments+;
+named: namedArguments+;
+positionalNamed: (positionalArguments',')+ namedArguments+;
+positionalArguments: (argument',')* argument;
+namedArguments: '{' (REQUIRED? argument',')* REQUIRED? argument '}';
+argument: type? ID;
+functionBody: '{' statements* returnStatement '}';
+returnStatement: RETURN (ID | CHARACTERS | DIGITS | expression | condition)* ';';
+
+
+//للتيست بس مو كاملين ابدا هدول
 expression: expression '*' expression
           | expression '/' expression
           | expression '+' expression
@@ -100,6 +126,7 @@ FALSE: 'false';
 OBJECT: 'Object';
 RETURN: 'return';
 LATE: 'late';
+REQUIRED: '@required';
 
 //OOP
 CLASS: 'class';
