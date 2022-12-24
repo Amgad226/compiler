@@ -8,6 +8,9 @@ statement: ifStatement
          | whileStatement
          | doWhileStatement
          | forStatement
+         | foreachStatement
+         | declaration';'
+         | assignment';'
          | expression';'
          ;
 
@@ -25,19 +28,25 @@ caseBody: statements* BREAK';';
 
 whileStatement: WHILE '(' condition ')' body;
 doWhileStatement: DO body WHILE '(' condition ');';
-forStatement: FOR '(' initialCondition ';' condition ';' expression')' body;
-initialCondition: expression | declaration;
+forStatement: FOR '(' initialCondition ';' condition ';' increment')' body;
+initialCondition: type? assignment;
+increment: expression;
+foreachStatement: FOREACH '(' varOrType ID 'in' ID ')' body;
 
+type: INT | DOUBLE | STRING | LIST | DYNAMIC | BOOL | OBJECT;
+varOrType: VAR | type;
+declaration: LATE? FINAL type? ID initialization?
+           | CONST type? ID initialization
+           | LATE? varOrType ID initialization?
+           ;
+initialization: '=' (DIGITS | CHARACTERS | expression);
+assignment: ID '=' (DIGITS | CHARACTERS | expression);
 
-condition: TRUE | FALSE | equal | notEqual;
-equal: ID '==' ID
-     | ID '==' DIGITS
-     | ID '==' CHARACTERS
-     ;
-notEqual: ID '!=' ID
-        | ID '!=' DIGITS
-        | ID '!=' CHARACTERS
-        ;
+condition: TRUE | FALSE | comparison ;
+comparison: ID ('<' | '<=' | '>' | '>=' | '==' | '!=') ID
+          | ID ('<' | '<=' | '>' | '>=' | '==' | '!=') DIGITS
+          | ID ('==' | '!=') CHARACTERS
+          ;
 
 expression: expression '*' expression
           | expression '/' expression
@@ -73,6 +82,7 @@ CONTINUE: 'continue';
 WHILE: 'while';
 DO: 'do';
 FOR: 'for';
+FOREACH: 'foreach';
 
 //TYPES
 FINAL: 'final';
@@ -89,6 +99,7 @@ TRUE: 'true';
 FALSE: 'false';
 OBJECT: 'Object';
 RETURN: 'return';
+LATE: 'late';
 
 //OOP
 CLASS: 'class';
@@ -100,6 +111,7 @@ ABSTRACT: 'abstract';
 //COMMENTS AND WHITE SPACES
 WS: ('\r'?'\n' | '\n' | ' ' | '\t')+ -> skip;
 COMMENT: '//' ~[\r\n] -> skip;
+MULTILINE_COMMENT: '/*' .*? '*/' -> skip;
 
 //GENERAL
 ID: '_'?[a-zA-Z]+[0-9]*;
