@@ -1,5 +1,7 @@
 grammar DartGrammar;
 
+start: class* function*;
+
 //RULES
 body: '{' statements '}';
 statements: statement+ ;
@@ -62,15 +64,13 @@ assignment: ID '=' (DIGITS | CHARACTERS | expression);
 voidOrType: VOID | type;
 function: voidOrType? ID arguments functionBody;
 //فصلت هالقد مشان قصة الفواصل وين لازم تنحط ووين لا وتركت فراغ مشان اذا ما حط ولا ارغيومنت
-arguments: '(' (positionalNamed | positional | named | ) ')';
-positional: positionalArguments+;
-named: namedArguments+;
-positionalNamed: (positionalArguments',')+ namedArguments+;
-positionalArguments: (argument',')* argument;
-namedArguments: '{' (REQUIRED? argument',')* REQUIRED? argument '}';
-argument: type? ID;
-functionBody: '{' statements* returnStatement '}';
-returnStatement: RETURN (ID | CHARACTERS | DIGITS | expression | condition)* ';';
+arguments: '(' (positionalNamedArguments | positionalArguments | namedArguments | ) ')';
+positionalNamedArguments: (positionalArguments',')+ namedArguments+;
+positionalArguments: (arg',')* arg;
+namedArguments: '{' (REQUIRED? arg',')* REQUIRED? arg '}';
+arg: type? ID;
+functionBody: '{' statements* returnStatement? '}';
+returnStatement: RETURN (ID | CHARACTERS | DIGITS | expression | condition)? ';';
 
 
 //للتيست بس مو كاملين ابدا هدول
@@ -84,9 +84,19 @@ expression: expression '*' expression
           ;
 
 
-
-
-
+//classes
+class: ABSTRACT? CLASS ID (EXTENDS ID)? (IMPLEMENTS ID)? classBody;
+classBody:'{' (attributes | methods | namedConstructer)* defaultConstructer? (attributes | methods | namedConstructer)* '}';
+attributes: (STATIC? declaration';');
+methods: (STATIC? function);
+defaultConstructer: ID '(' consArguments ( ');' | ')' consBody );
+namedConstructer: ID'.'ID '(' consArguments ( ');' | ')' consBody);
+consArguments: (consPositionalNamedArguments | consPositionalArguments | consNamedArguments | );
+consPositionalNamedArguments: (consPositionalArguments',')+ consNamedArguments+;
+consPositionalArguments: (consArg',')* consArg;
+consNamedArguments: '{' (REQUIRED? consArg',')* REQUIRED? consArg '}';
+consArg: (type? ID) | (THIS'.'ID);
+consBody: '{' statements* '}';
 
 
 
@@ -126,7 +136,7 @@ FALSE: 'false';
 OBJECT: 'Object';
 RETURN: 'return';
 LATE: 'late';
-REQUIRED: '@required';
+REQUIRED: 'required';
 
 //OOP
 CLASS: 'class';
@@ -134,6 +144,8 @@ EXTENDS: 'extends';
 INTERFACE: 'interface';
 IMPLEMENTS: 'implements';
 ABSTRACT: 'abstract';
+THIS: 'this';
+STATIC: 'static';
 
 //COMMENTS AND WHITE SPACES
 WS: ('\r'?'\n' | '\n' | ' ' | '\t')+ -> skip;
