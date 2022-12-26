@@ -1,6 +1,6 @@
 grammar DartGrammar;
 
-start: class* function*;
+start: (class | function)+;
 
 //RULES
 body: '{' statements '}';
@@ -15,6 +15,7 @@ statement: ifStatement
          | assignment';'
          | expression';'
          | function
+         | functionCall';'
          ;
 
 condition: TRUE | FALSE | comparison;
@@ -56,14 +57,14 @@ declaration: LATE? FINAL type? ID initialization?
            | CONST type? ID initialization
            | LATE? varOrType ID initialization?
            ;
-initialization: '=' (DIGITS | CHARACTERS | expression);
-assignment: ID '=' (DIGITS | CHARACTERS | expression);
+initialization: '=' (DIGITS | CHARACTERS | functionCall | object | expression);
+assignment: ID '=' (DIGITS | CHARACTERS | functionCall | object | expression);
 
 
 //functions
 voidOrType: VOID | type;
 signature: voidOrType? ID arguments;
-function: signature functionBody;
+function: signature (ASYNC | ASYNC_STAR)? functionBody;
 //فصلت هالقد مشان قصة الفواصل وين لازم تنحط ووين لا وتركت فراغ مشان اذا ما حط ولا ارغيومنت
 arguments: '(' (positionalNamedArguments | positionalArguments | namedArguments | ) ')';
 positionalNamedArguments: (positionalArguments',')+ namedArguments+;
@@ -74,22 +75,13 @@ functionBody: '{' statements* returnStatement? '}';
 returnStatement: RETURN (ID | CHARACTERS | DIGITS | expression | condition)? ';';
 
 
-//للتيست بس مو كاملين ابدا هدول
-expression: expression '*' expression
-          | expression '/' expression
-          | expression '+' expression
-          | expression '-' expression
-          | expression '=' expression
-          | ID
-          | DIGITS
-          ;
-
-
 //classes
 class: ABSTRACT? CLASS ID (EXTENDS ID)? (IMPLEMENTS ID)? classBody;
 classBody:'{' (attribute | method)* defaultConstructer? (attribute | method)* '}';
 attribute: (STATIC? declaration';');
-method: STATIC? signature methodBody
+method: OVERRIDE? signature methodBody
+      | STATIC signature methodBody
+      | signature';'
       | namedConstructer
       ;
 methodBody: '{' (statements | thisStatement';')* '}';
@@ -101,6 +93,27 @@ consPositionalNamedArguments: (consPositionalArguments',')+ consNamedArguments+;
 consPositionalArguments: (consArg',')* consArg;
 consNamedArguments: '{' (REQUIRED? consArg',')* REQUIRED? consArg '}';
 consArg: (type? ID) | (THIS'.'ID);
+
+
+//function calls and objects
+functionCall: AWAIT? ID '(' parameters ')';
+object: NEW ID '(' parameters ')';
+parameters: (positionalNamedParameters | positionalParameters | namedParameters | );
+positionalNamedParameters: (positionalParameters',')+ namedParameters+;
+positionalParameters: (parameter',')* parameter;
+namedParameters: (ID':'parameter',')* ID':'parameter;
+parameter: ID | DIGITS | CHARACTERS | object;
+
+
+//expressions
+expression: expression '*' expression
+          | expression '/' expression
+          | expression '+' expression
+          | expression '-' expression
+          | expression '=' expression
+          | ID
+          | DIGITS
+          ;
 
 
 
@@ -141,6 +154,9 @@ OBJECT: 'Object';
 RETURN: 'return';
 LATE: 'late';
 REQUIRED: 'required';
+ASYNC: 'async';
+ASYNC_STAR: 'async*';
+AWAIT: 'await';
 
 //OOP
 CLASS: 'class';
@@ -148,8 +164,10 @@ EXTENDS: 'extends';
 INTERFACE: 'interface';
 IMPLEMENTS: 'implements';
 ABSTRACT: 'abstract';
+OVERRIDE: '@override';
 THIS: 'this';
 STATIC: 'static';
+NEW: 'new';
 
 //COMMENTS AND WHITE SPACES
 WS: ('\r'?'\n' | '\n' | ' ' | '\t')+ -> skip;
