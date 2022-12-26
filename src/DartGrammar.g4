@@ -62,7 +62,8 @@ assignment: ID '=' (DIGITS | CHARACTERS | expression);
 
 //functions
 voidOrType: VOID | type;
-function: voidOrType? ID arguments functionBody;
+signature: voidOrType? ID arguments;
+function: signature functionBody;
 //فصلت هالقد مشان قصة الفواصل وين لازم تنحط ووين لا وتركت فراغ مشان اذا ما حط ولا ارغيومنت
 arguments: '(' (positionalNamedArguments | positionalArguments | namedArguments | ) ')';
 positionalNamedArguments: (positionalArguments',')+ namedArguments+;
@@ -86,17 +87,20 @@ expression: expression '*' expression
 
 //classes
 class: ABSTRACT? CLASS ID (EXTENDS ID)? (IMPLEMENTS ID)? classBody;
-classBody:'{' (attributes | methods | namedConstructer)* defaultConstructer? (attributes | methods | namedConstructer)* '}';
-attributes: (STATIC? declaration';');
-methods: (STATIC? function);
-defaultConstructer: ID '(' consArguments ( ');' | ')' consBody );
-namedConstructer: ID'.'ID '(' consArguments ( ');' | ')' consBody);
+classBody:'{' (attribute | method)* defaultConstructer? (attribute | method)* '}';
+attribute: (STATIC? declaration';');
+method: STATIC? signature methodBody
+      | namedConstructer
+      ;
+methodBody: '{' (statements | thisStatement';')* '}';
+thisStatement: THIS'.'ID '=' (DIGITS | CHARACTERS | expression);
+defaultConstructer: ID '(' consArguments ( ');' | ')' methodBody );
+namedConstructer: ID'.'ID '(' consArguments ( ');' | ')' methodBody);
 consArguments: (consPositionalNamedArguments | consPositionalArguments | consNamedArguments | );
 consPositionalNamedArguments: (consPositionalArguments',')+ consNamedArguments+;
 consPositionalArguments: (consArg',')* consArg;
 consNamedArguments: '{' (REQUIRED? consArg',')* REQUIRED? consArg '}';
 consArg: (type? ID) | (THIS'.'ID);
-consBody: '{' statements* '}';
 
 
 
