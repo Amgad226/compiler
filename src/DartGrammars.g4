@@ -1,9 +1,10 @@
 grammar DartGrammars;
 
+// to be changed
 start: (class | function)+;
 
 //RULES
-body: '{' statements* '}';
+block: '{' statements* '}';
 statements: statement+ ;
 statement: ifStatement
          | switchStatement
@@ -25,9 +26,9 @@ comparison: ID ('<' | '<=' | '>' | '>=' | '==' | '!=') ID
 
 
 //conditions process
-ifStatement: IF '(' condition ')' body (elseIfStatement* elseStatement)*;
-elseIfStatement: ELSE IF '(' condition ')' body;
-elseStatement: ELSE body;
+ifStatement: IF '(' condition ')' block (elseIfStatement* elseStatement)*;
+elseIfStatement: ELSE IF '(' condition ')' block;
+elseStatement: ELSE block;
 
 switchStatement: SWITCH'('ID')' switchBody;
 switchBody: '{' cases '}';
@@ -38,15 +39,15 @@ caseBody: statements* BREAK';';
 
 
 //loops
-whileStatement: WHILE '(' condition ')' body;
+whileStatement: WHILE '(' condition ')' block;
 
-doWhileStatement: DO body WHILE '(' condition ');';
+doWhileStatement: DO block WHILE '(' condition ');';
 
-forStatement: FOR '(' initialCondition ';' condition ';' increment')' body;
+forStatement: FOR '(' initialCondition ';' condition ';' increment')' block;
 initialCondition: type? assignment;
 increment: assignment;
 
-foreachStatement: FOREACH '(' varOrType ID 'in' ID ')' body;
+foreachStatement: FOREACH '(' varOrType ID 'in' ID ')' block;
 
 
 //variables
@@ -58,7 +59,7 @@ declaration: LATE? FINAL type? ID initialization?
            ;
 initialization: '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list);
 assignment: ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list);
-list: '[' (ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction)? (','(ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction))* ']';
+list: '[' ((ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction)',')* ']';
 
 //functions
 voidOrType: VOID | type;
@@ -97,7 +98,9 @@ consArg: (type? ID) | (THIS'.'ID);
 
 //function calls and objects
 functionCall: AWAIT? ID '(' parameters ')';
-object: NEW ID '(' parameters ')';
+object: NEW ID '(' parameters ')'
+      | component
+      ;
 parameters: (positionalNamedParameters | positionalParameters | namedParameters | );
 positionalNamedParameters: (positionalParameters',')+ namedParameters+;
 positionalParameters: (parameter',')* parameter;
@@ -115,6 +118,46 @@ expression: expression '*' expression
           ;
 
 
+///////////////////////////FLUTTER///////////////////////////
+component: materialApp
+         | scaffold
+         | column
+         | row
+         | stack
+         | text
+         | container
+         | inkWell
+         | image
+         | button
+         ;
+
+materialApp: NEW MATERIAL_APP '(' materialAppAtts ')' ;
+materialAppAtts: (TITLE':'CHARACTERS',')? (HOME':'object',')? ;
+
+scaffold: NEW SCAFFOLD '(' scaffoldAtts ')' ;
+scaffoldAtts: (BACKGROUND_COLOR':'COLORS',')? (BODY':'object',')? ;
+
+column: NEW COLUMN '(' column_rowAtts ')' ;
+row: NEW ROW '(' column_rowAtts ')' ;
+column_rowAtts: (MAIN_AXIS_ALIGNMENT':'ALIGNMENT',')? (CROSS_AXIS_ALIGNMENT':'ALIGNMENT',')? (CHILDREN':'list',')? ;
+
+stack: NEW STACK '(' stackAtts ')' ;
+stackAtts: (FIT':'STACK_FIT',')? (CHILDREN':'list',')? ;
+
+text: NEW TEXT '(' CHARACTERS',' textAtts ')' ;
+textAtts: (COLOR':'COLORS',')? (SIZE':'DIGITS)? (STYLE':'STYLES)?;
+
+container: NEW CONTAINER '(' containerAtts ')' ;
+containerAtts: (WIDTH':'DIGITS',')? (HEIGHT':'DIGITS',')? (CHILD':'object)? ;
+
+inkWell: NEW INK_WELL '(' inkWellAtts ')' ;
+inkWellAtts: (ON_TAP':'(functionCall | unnamedFunction)',') (CHILD':'object)? ;
+
+image: NEW IMAGE '(' CHARACTERS',' imageAtts ')' ;
+imageAtts: (FIT':'BOX_FIT',')? ;
+
+button: NEW BUTTON '(' buttonAtts ')' ;
+buttonAtts: (ACTION':'(functionCall | unnamedFunction)',')? (CHILD':'text',')? (COLOR':'COLORS',')? ;
 
 
 
@@ -173,6 +216,48 @@ NEW: 'new';
 WS: ('\r'?'\n' | '\n' | ' ' | '\t')+ -> skip;
 COMMENT: '//' ~[\r\n] -> skip;
 MULTILINE_COMMENT: '/*' .*? '*/' -> skip;
+
+//COMPONENTS
+MATERIAL_APP: 'MaterialApp';
+TITLE: 'title';
+HOME: 'home';
+/////////////
+SCAFFOLD: 'Scaffold';
+BODY: 'body';
+BACKGROUND_COLOR: 'backgroundColor';
+/////////////
+COLUMN: 'Column';
+ROW: 'Row';
+MAIN_AXIS_ALIGNMENT: 'mainAxisAlignment';
+CROSS_AXIS_ALIGNMENT: 'crossAxisAlignment';
+CHILDREN: 'children';
+/////////////
+TEXT: 'Text';
+COLOR: 'color';
+SIZE: 'size';
+STYLE: 'style';
+/////////////
+CONTAINER: 'Container';
+WIDTH: 'width';
+HEIGHT: 'height';
+CHILD: 'child';
+/////////////
+INK_WELL: 'InkWell';
+ON_TAP: 'onTap';
+/////////////
+IMAGE: 'Image';
+FIT: 'fit';
+/////////////
+STACK: 'Stack';
+/////////////
+BUTTON: 'Button';
+ACTION: 'action';
+/////////////
+COLORS: 'Purple' | 'Blue' | 'Yellow' | 'Black' | 'White' | 'Green' | 'Red';
+STYLES: 'Italic' | 'Bold' | 'BoldItalic';
+BOX_FIT: 'BoxFit.cover' | 'BoxFit.fill' | 'BoxFit.fitWidth' | 'BoxFit.fitHeight';
+STACK_FIT: 'StackFit.expand' | 'StackFit.loose';
+ALIGNMENT: 'start' | 'center' | 'end' | 'spaceBetween' | 'spaceEvenly' | 'spaceAround';
 
 //GENERAL
 ID: '_'?[a-zA-Z]+[0-9]*;
