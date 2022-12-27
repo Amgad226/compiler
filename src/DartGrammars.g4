@@ -1,9 +1,9 @@
-grammar DartGrammar;
+grammar DartGrammars;
 
 start: (class | function)+;
 
 //RULES
-body: '{' statements '}';
+body: '{' statements* '}';
 statements: statement+ ;
 statement: ifStatement
          | switchStatement
@@ -13,14 +13,13 @@ statement: ifStatement
          | foreachStatement
          | declaration';'
          | assignment';'
-         | expression';'
          | function
          | functionCall';'
          ;
 
 condition: TRUE | FALSE | comparison;
 comparison: ID ('<' | '<=' | '>' | '>=' | '==' | '!=') ID
-          | ID ('<' | '<=' | '>' | '>=' | '==' | '!=') DIGITS
+          | ID ('<' | '<=' | '>' | '>=' | '==' | '!=') expression
           | ID ('==' | '!=') CHARACTERS
           ;
 
@@ -45,26 +44,27 @@ doWhileStatement: DO body WHILE '(' condition ');';
 
 forStatement: FOR '(' initialCondition ';' condition ';' increment')' body;
 initialCondition: type? assignment;
-increment: expression;
+increment: assignment;
 
 foreachStatement: FOREACH '(' varOrType ID 'in' ID ')' body;
 
 
 //variables
-type: INT | DOUBLE | STRING | LIST | DYNAMIC | BOOL | OBJECT;
+type: INT | DOUBLE | STRING | LIST | DYNAMIC | BOOL | OBJECT | FUNCTION;
 varOrType: VAR | type;
 declaration: LATE? FINAL type? ID initialization?
            | CONST type? ID initialization
            | LATE? varOrType ID initialization?
            ;
-initialization: '=' (DIGITS | CHARACTERS | functionCall | object | expression);
-assignment: ID '=' (DIGITS | CHARACTERS | functionCall | object | expression);
-
+initialization: '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list);
+assignment: ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list);
+list: '[' (ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction)? (','(ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction))* ']';
 
 //functions
 voidOrType: VOID | type;
 signature: voidOrType? ID arguments;
 function: signature (ASYNC | ASYNC_STAR)? functionBody;
+unnamedFunction: arguments (ASYNC | ASYNC_STAR)? functionBody;
 //فصلت هالقد مشان قصة الفواصل وين لازم تنحط ووين لا وتركت فراغ مشان اذا ما حط ولا ارغيومنت
 arguments: '(' (positionalNamedArguments | positionalArguments | namedArguments | ) ')';
 positionalNamedArguments: (positionalArguments',')+ namedArguments+;
@@ -72,7 +72,7 @@ positionalArguments: (arg',')* arg;
 namedArguments: '{' (REQUIRED? arg',')* REQUIRED? arg '}';
 arg: type? ID;
 functionBody: '{' statements* returnStatement? '}';
-returnStatement: RETURN (ID | CHARACTERS | DIGITS | expression | condition)? ';';
+returnStatement: RETURN (ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction | condition)? ';';
 
 
 //classes
@@ -85,7 +85,7 @@ method: OVERRIDE? signature methodBody
       | namedConstructer
       ;
 methodBody: '{' (statements | thisStatement';')* '}';
-thisStatement: THIS'.'ID '=' (DIGITS | CHARACTERS | expression);
+thisStatement: THIS'.'ID '=' (ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction);
 defaultConstructer: ID '(' consArguments ( ');' | ')' methodBody );
 namedConstructer: ID'.'ID '(' consArguments ( ');' | ')' methodBody);
 consArguments: (consPositionalNamedArguments | consPositionalArguments | consNamedArguments | );
@@ -102,7 +102,7 @@ parameters: (positionalNamedParameters | positionalParameters | namedParameters 
 positionalNamedParameters: (positionalParameters',')+ namedParameters+;
 positionalParameters: (parameter',')* parameter;
 namedParameters: (ID':'parameter',')* ID':'parameter;
-parameter: ID | DIGITS | CHARACTERS | object;
+parameter: ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction;
 
 
 //expressions
@@ -110,7 +110,6 @@ expression: expression '*' expression
           | expression '/' expression
           | expression '+' expression
           | expression '-' expression
-          | expression '=' expression
           | ID
           | DIGITS
           ;
@@ -151,6 +150,7 @@ BOOL: 'bool';
 TRUE: 'true';
 FALSE: 'false';
 OBJECT: 'Object';
+FUNCTION: 'Function';
 RETURN: 'return';
 LATE: 'late';
 REQUIRED: 'required';
