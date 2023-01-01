@@ -1,29 +1,29 @@
 grammar DartGrammars;
 
 // to be changed
-start:
-    (class | function)+
+start
+    : (class | function)+
     ;
 
-number:
-    positive | negative
+number
+    : positive | negative
     ;
-positive:
-    INT_NUM | DOUBLE_NUM
+positive
+    : INT_NUM | DOUBLE_NUM
     ;
-negative:
-    '-' (INT_NUM | DOUBLE_NUM)
+negative
+    : '-' (INT_NUM | DOUBLE_NUM)
     ;
 
 //RULES
-block:
-    '{' statements* '}'
+block
+    : '{' statements* '}'
     ;
-statements:
-    statement+
+statements
+    : statement+
     ;
-statement:
-    ifStatement
+statement
+    : ifStatement
     | switchStatement
     | whileStatement
     | doWhileStatement
@@ -35,206 +35,206 @@ statement:
     | functionCall SEMICOLON
     ;
 
-condition:
-    TRUE | FALSE | comparison
+condition
+    : TRUE | FALSE | comparison
     ;
 
-comparison:
-    ID ('<' | '<=' | '>' | '>=' | '==' | '!=') ID
+comparison
+    : ID ('<' | '<=' | '>' | '>=' | '==' | '!=') ID
     | ID ('<' | '<=' | '>' | '>=' | '==' | '!=') expression
     | ID ('==' | '!=') CHARACTERS
     ;
 
 
 //conditions process
-ifStatement:
-    IF '(' condition ')' block (elseIfStatement* elseStatement)*
+ifStatement
+    : IF '(' condition ')' block (elseIfStatement* elseStatement)*
     ;
-elseIfStatement:
-    ELSE IF '(' condition ')' block
+elseIfStatement
+    : ELSE IF '(' condition ')' block
     ;
-elseStatement:
-    ELSE block
+elseStatement
+    : ELSE block
     ;
 
-switchStatement:
-    SWITCH'('ID')' switchBody
+switchStatement
+    : SWITCH'('ID')' switchBody
     ;
-switchBody:
-    '{' cases '}'
+switchBody
+    : '{' cases '}'
     ;
-cases:
-    case+ defaultCase
+cases
+    : case+ defaultCase
     ;
-case:
-    (CASE number | CASE CHARACTERS)':' caseBody
+case
+    : (CASE number | CASE CHARACTERS)':' caseBody
     ;
-defaultCase:
-    DEFAULT':' caseBody
+defaultCase
+    : DEFAULT':' caseBody
     ;
-caseBody:
-    statements* BREAK SEMICOLON
+caseBody
+    : statements* BREAK SEMICOLON
     ;
 
 
 //loops
-whileStatement:
-    WHILE '(' condition ')' block
+whileStatement
+    : WHILE '(' condition ')' block
     ;
 
-doWhileStatement:
-    DO block WHILE '(' condition ')' SEMICOLON
+doWhileStatement
+    : DO block WHILE '(' condition ')' SEMICOLON
     ;
 
-forStatement:
-    FOR '(' initialCondition SEMICOLON condition SEMICOLON increment')' block
+forStatement
+    : FOR '(' initialCondition SEMICOLON condition SEMICOLON increment')' block
     ;
-initialCondition:
-    type? assignment
+initialCondition
+    : type? assignment
     ;
-increment:
-    assignment
+increment
+    : assignment
     ;
 
-foreachStatement:
-    FOREACH '(' varOrType ID 'in' ID ')' block
+foreachStatement
+    : FOREACH '(' varOrType ID 'in' ID ')' block
     ;
 
 
 //variables
-type:
-    INT | DOUBLE | STRING | LIST | DYNAMIC | BOOL | OBJECT | FUNCTION
+type
+    : INT | DOUBLE | STRING | LIST | DYNAMIC | BOOL | OBJECT | FUNCTION
     ;
-varOrType:
-    VAR | type
+varOrType
+    : VAR | type
     ;
-declaration:
-    LATE? FINAL type? ID initialization?
+declaration
+    : LATE? FINAL type? ID initialization?
     | CONST type? ID initialization
     | LATE? varOrType ID initialization?
     ;
-initialization:
-    '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
+initialization
+    : '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
     ;
-assignment:
-    (ID'.')?ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
+assignment
+    : (ID'.')?ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
     ;
-list:
-    '[' ( (listElement COMMA)* listElement)? ']'
+list
+    : '[' ( (listElement COMMA)* listElement)? ']'
     ;
-listElement:
-    ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction
+listElement
+    : ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction
     ;
 
 //functions
-voidOrType:
-    VOID | type
+voidOrType
+    : VOID | type
     ;
-signature:
-    voidOrType? ID arguments
+signature
+    : voidOrType? ID arguments
     ;
-function:
-    signature (ASYNC | ASYNC_STAR)? functionBody
+function
+    : signature (ASYNC | ASYNC_STAR)? functionBody
     ;
-unnamedFunction:
-    arguments (ASYNC | ASYNC_STAR)? functionBody
+unnamedFunction
+    : arguments (ASYNC | ASYNC_STAR)? functionBody
     ;
-arguments:
-    '(' (positionalNamedArguments | positionalArguments | namedArguments | ) ')'
+arguments
+    : '(' (positionalNamedArguments | positionalArguments | namedArguments | ) ')'
     ;
-positionalNamedArguments:
-    (positionalArguments COMMA)+ namedArguments+
+positionalNamedArguments
+    : (positionalArguments COMMA)+ namedArguments+
     ;
-positionalArguments:
-    (arg COMMA)* arg
+positionalArguments
+    : (arg COMMA)* arg
     ;
-namedArguments:
-    '{' (REQUIRED? arg COMMA)* REQUIRED? arg '}'
+namedArguments
+    : '{' (REQUIRED? arg COMMA)* REQUIRED? arg '}'
     ;
-arg:
-    type? ID
+arg
+    : type? ID
     ;
-functionBody:
-    '{' statements* returnStatement? '}'
+functionBody
+    : '{' statements* returnStatement? '}'
     ;
-returnStatement:
-    RETURN (ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction | condition)? SEMICOLON
+returnStatement
+    : RETURN (ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction | condition)? SEMICOLON
     ;
 
 
 //classes
-class:
-    ABSTRACT? CLASS ID (EXTENDS ID)? (IMPLEMENTS ID)? classBody
+class
+    : ABSTRACT? CLASS ID (EXTENDS ID)? (IMPLEMENTS ID)? classBody
     ;
-classBody:
-    '{' (attribute | method)* defaultConstructer? (attribute | method)* '}'
+classBody
+    : '{' (attribute | method)* defaultConstructer? (attribute | method)* '}'
     ;
-attribute:
-    (STATIC? declaration SEMICOLON)
+attribute
+    : (STATIC? declaration SEMICOLON)
     ;
-method:
-    OVERRIDE? signature methodBody
+method
+    : OVERRIDE? signature methodBody
     | STATIC signature methodBody
     | signature SEMICOLON
     | namedConstructer
     ;
-methodBody:
-    '{' (statements | (thisStatement SEMICOLON))* returnStatement? '}'
+methodBody
+    : '{' (statements | (thisStatement SEMICOLON))* returnStatement? '}'
     ;
-thisStatement:
-    THIS'.'ID '=' (ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction)
+thisStatement
+    : THIS'.'ID '=' (ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction)
     ;
-defaultConstructer:
-    ID '(' consArguments ( (')' SEMICOLON) | (')' methodBody) )
+defaultConstructer
+    : ID '(' consArguments ( (')' SEMICOLON) | (')' methodBody) )
     ;
-namedConstructer:
-    ID'.'ID '(' consArguments ( (')' SEMICOLON) | (')' methodBody) )
+namedConstructer
+    : ID'.'ID '(' consArguments ( (')' SEMICOLON) | (')' methodBody) )
     ;
-consArguments:
-    (consPositionalNamedArguments | consPositionalArguments | consNamedArguments | )
+consArguments
+    : (consPositionalNamedArguments | consPositionalArguments | consNamedArguments | )
     ;
-consPositionalNamedArguments:
-    (consPositionalArguments COMMA)+ consNamedArguments+
+consPositionalNamedArguments
+    : (consPositionalArguments COMMA)+ consNamedArguments+
     ;
-consPositionalArguments:
-    (consArg COMMA)* consArg
+consPositionalArguments
+    : (consArg COMMA)* consArg
     ;
-consNamedArguments:
-    '{' (REQUIRED? consArg COMMA)* REQUIRED? consArg '}'
+consNamedArguments
+    : '{' (REQUIRED? consArg COMMA)* REQUIRED? consArg '}'
     ;
-consArg:
-    (type? ID) | (THIS'.'ID)
+consArg
+    : (type? ID) | (THIS'.'ID)
     ;
 
 
 //function calls and objects
-functionCall:
-    AWAIT? (ID'.')?ID '(' parameters ')'
+functionCall
+    : AWAIT? (ID'.')?ID '(' parameters ')'
     ;
-object:
-    NEW ID '(' parameters ')'
+object
+    : NEW ID '(' parameters ')'
     | component
     ;
-parameters:
-    (positionalNamedParameters | positionalParameters | namedParameters | )
+parameters
+    : (positionalNamedParameters | positionalParameters | namedParameters | )
     ;
-positionalNamedParameters:
-    (positionalParameters COMMA)+ namedParameters+
+positionalNamedParameters
+    : (positionalParameters COMMA)+ namedParameters+
     ;
-positionalParameters:
-    (parameter COMMA)* parameter COMMA?
+positionalParameters
+    : (parameter COMMA)* parameter COMMA?
     ;
-namedParameters:
-    (ID':'parameter COMMA)* ID':'parameter COMMA?
+namedParameters
+    : (ID':'parameter COMMA)* ID':'parameter COMMA?
     ;
-parameter:
-    ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction
+parameter
+    : ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction
     ;
 
 
 //expressions
-expression:
-    expression '*' expression
+expression
+    : expression '*' expression
     | expression '/' expression
     | expression '+' expression
     | expression '-' expression
@@ -244,8 +244,8 @@ expression:
 
 
 ///////////////////////////FLUTTER///////////////////////////
-component:
-    materialApp
+component
+    : materialApp
     | scrollView
     | scaffold
     | column
@@ -260,99 +260,196 @@ component:
     | button
     ;
 
-materialApp:
-    NEW MATERIAL_APP '(' materialAppAtts ')'
+
+materialApp
+    : NEW MATERIAL_APP '(' materialAppAtts* ')'
     ;
-materialAppAtts:
-    (TITLE':'CHARACTERS COMMA)? (HOME':'object COMMA?)?
+materialAppAtts
+    : materialTitle
+    | materialHome
+    ;
+materialTitle
+    : TITLE':'CHARACTERS COMMA?
+    ;
+materialHome:
+    HOME':'object COMMA?
     ;
 
-scaffold:
-    NEW SCAFFOLD '(' scaffoldAtts ')'
+
+scaffold
+    : NEW SCAFFOLD '(' scaffoldAtts* ')'
     ;
-scaffoldAtts:
-    (BACKGROUND_COLOR':'COLORS COMMA)? (BODY':'object COMMA?)?
+scaffoldAtts
+    : scaffoldBackground
+    | scaffoldBody
     ;
+scaffoldBackground
+    : BACKGROUND_COLOR':'COLORS COMMA?
+    ;
+scaffoldBody
+    : BODY':'object COMMA?
+    ;
+
 
 column:
-    NEW COLUMN '(' column_rowAtts ')'
+    NEW COLUMN '(' column_rowAtts* ')'
     ;
 row:
-    NEW ROW '(' column_rowAtts ')'
+    NEW ROW '(' column_rowAtts* ')'
     ;
-column_rowAtts:
-    (MAIN_AXIS_ALIGNMENT':'ALIGNMENT COMMA)? (CROSS_AXIS_ALIGNMENT':'ALIGNMENT COMMA)? (CHILDREN':'list COMMA?)?
+column_rowAtts
+    : mainAxis
+    | crossAxis
+    | children
+    ;
+mainAxis
+    : MAIN_AXIS_ALIGNMENT':'ALIGNMENT COMMA?
+    ;
+crossAxis
+    : CROSS_AXIS_ALIGNMENT':'ALIGNMENT COMMA?
+    ;
+children
+    : CHILDREN':'list COMMA?
     ;
 
-stack:
-    NEW STACK '(' stackAtts ')'
+
+stack
+    : NEW STACK '(' stackAtts* ')'
     ;
-stackAtts:
-    (FIT':'STACK_FIT COMMA)? (CHILDREN':'list COMMA?)?
+stackAtts
+    : stackFit
+    | children
     ;
+stackFit
+    : FIT':'STACK_FIT COMMA?
+    ;
+
 
 text:
-    NEW TEXT '(' CHARACTERS',' textAtts ')'
+    NEW TEXT '(' CHARACTERS COMMA? textAtts* ')'
     ;
-textAtts:
-    (COLOR':'COLORS COMMA)? (SIZE':'INT_NUM COMMA)? (STYLE':'STYLES COMMA?)?
+textAtts
+    : color
+    | textSize
+    | textStyle
     ;
-
-container:
-    NEW CONTAINER '(' containerAtts ')'
+color
+    : COLOR':'COLORS COMMA?
     ;
-containerAtts:
-    (MARGIN':'values COMMA)? (WIDTH':'INT_NUM COMMA)? (HEIGHT':'INT_NUM COMMA)? (CHILD':'object COMMA?)?
+textSize
+    : SIZE':'INT_NUM COMMA?
     ;
-
-sizedBox:
-    NEW SIZEDBOX '(' sizedBoxAtts ')'
-    ;
-sizedBoxAtts:
-    (WIDTH':'INT_NUM COMMA)? (HEIGHT':'INT_NUM COMMA)? (CHILD':'object COMMA?)?
+textStyle
+    : STYLE':'STYLES COMMA?
     ;
 
-padding:
-    NEW PADDING '(' paddingAtts ')'
+
+container
+    : NEW CONTAINER '(' containerAtts* ')'
     ;
-paddingAtts:
-    (VALUES':'values COMMA)? (CHILD':'object COMMA?)?
+containerAtts
+    : margin
+    | width
+    | height
+    | child
+    | color
+    ;
+margin
+    : MARGIN':'values COMMA?
+    ;
+width
+    : WIDTH':'INT_NUM COMMA?
+    ;
+height
+    : HEIGHT':'INT_NUM COMMA?
+    ;
+child
+    : CHILD':'object COMMA?
     ;
 
-values:
-    ZERO
+
+sizedBox
+    : NEW SIZEDBOX '(' sizedBoxAtts* ')'
+    ;
+sizedBoxAtts
+    : width
+    | height
+    | child
+    ;
+
+
+padding
+    : NEW PADDING '(' paddingAtts* ')'
+    ;
+paddingAtts
+    : VALUES':'values COMMA?
+    | child
+    ;
+
+values
+    : ZERO
     | ALL '(' INT_NUM ')'
-    | SYMMETRIC '(' (HORIZONTAL':'INT_NUM COMMA) (VERTICAL':' INT_NUM COMMA?) ')'
-    | COSTUME '(' (LEFT':'INT_NUM COMMA) (TOP':'INT_NUM COMMA) (RIGHT':'INT_NUM COMMA) (BOTTOM':'INT_NUM COMMA?) ')'
+    | SYMMETRIC '(' horizontalOrVertical+ ')'
+    | COSTUME '(' costumeValues+ ')'
+    ;
+horizontalOrVertical
+    : HORIZONTAL':'INT_NUM COMMA?
+    | VERTICAL':' INT_NUM COMMA?
+    ;
+costumeValues
+    : LEFT':'INT_NUM COMMA?
+    | TOP':'INT_NUM COMMA?
+    | RIGHT':'INT_NUM COMMA?
+    | BOTTOM':'INT_NUM COMMA?
     ;
 
-inkWell:
-    NEW INK_WELL '(' inkWellAtts ')'
+
+inkWell
+    : NEW INK_WELL '(' inkWellAtts* ')'
     ;
-inkWellAtts:
-    (ON_TAP':'(functionCall | unnamedFunction) COMMA) (CHILD':'object COMMA?)?
+inkWellAtts
+    : onTap
+    | child
+    ;
+onTap
+    : ON_TAP':'(functionCall | unnamedFunction) COMMA?
     ;
 
-image:
-    NEW IMAGE '(' CHARACTERS COMMA imageAtts ')'
+
+image
+    : NEW IMAGE '(' CHARACTERS COMMA? imageAtts* ')'
     ;
-imageAtts:
-    (FIT':'BOX_FIT COMMA)?
+imageAtts
+    : imageFit
+    | width
+    | height
+    ;
+imageFit
+    : FIT':'BOX_FIT COMMA?
     ;
 
-button:
-    NEW BUTTON '(' buttonAtts ')'
+
+button
+    : NEW BUTTON '(' buttonAtts* ')'
     ;
-buttonAtts:
-    (ON_TAP':'(functionCall | unnamedFunction) COMMA) (CHILD':'text COMMA)? (COLOR':'COLORS COMMA?)?
+buttonAtts
+    : onTap
+    | child
+    | color
     ;
 
-scrollView:
-    NEW SCROLL_VIEW '(' scrollViewAtts ')'
+
+scrollView
+    : NEW SCROLL_VIEW '(' scrollViewAtts* ')'
     ;
-scrollViewAtts:
-    (SCROLL_DIRECTION':'DIRECTION COMMA) (CHILD':'object COMMA?)?
+scrollViewAtts
+    : scrollDirection
+    | child
     ;
+scrollDirection
+    : SCROLL_DIRECTION':' (HORIZONTAL | VERTICAL) COMMA?
+    ;
+
 
 //TOKENS
 
@@ -447,7 +544,6 @@ BUTTON: 'Button';
 /////////////
 SCROLL_VIEW: 'ScrollView';
 SCROLL_DIRECTION: 'scrollDirection';
-DIRECTION: HORIZONTAL | VERTICAL;
 /////////////
 PADDING: 'Padding';
 VALUES: 'values';
