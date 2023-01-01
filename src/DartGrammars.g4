@@ -1,166 +1,358 @@
 grammar DartGrammars;
 
 // to be changed
-start: (class | function)+;
+start:
+    (class | function)+
+    ;
+
+number:
+    positive | negative
+    ;
+positive:
+    INT_NUM | DOUBLE_NUM
+    ;
+negative:
+    '-' (INT_NUM | DOUBLE_NUM)
+    ;
 
 //RULES
-block: '{' statements* '}';
-statements: statement+ ;
-statement: ifStatement
-         | switchStatement
-         | whileStatement
-         | doWhileStatement
-         | forStatement
-         | foreachStatement
-         | declaration';'
-         | assignment';'
-         | function
-         | functionCall';'
-         ;
+block:
+    '{' statements* '}'
+    ;
+statements:
+    statement+
+    ;
+statement:
+    ifStatement
+    | switchStatement
+    | whileStatement
+    | doWhileStatement
+    | forStatement
+    | foreachStatement
+    | declaration SEMICOLON
+    | assignment SEMICOLON
+    | function
+    | functionCall SEMICOLON
+    ;
 
-condition: TRUE | FALSE | comparison;
-comparison: ID ('<' | '<=' | '>' | '>=' | '==' | '!=') ID
-          | ID ('<' | '<=' | '>' | '>=' | '==' | '!=') expression
-          | ID ('==' | '!=') CHARACTERS
-          ;
+condition:
+    TRUE | FALSE | comparison
+    ;
+
+comparison:
+    ID ('<' | '<=' | '>' | '>=' | '==' | '!=') ID
+    | ID ('<' | '<=' | '>' | '>=' | '==' | '!=') expression
+    | ID ('==' | '!=') CHARACTERS
+    ;
 
 
 //conditions process
-ifStatement: IF '(' condition ')' block (elseIfStatement* elseStatement)*;
-elseIfStatement: ELSE IF '(' condition ')' block;
-elseStatement: ELSE block;
+ifStatement:
+    IF '(' condition ')' block (elseIfStatement* elseStatement)*
+    ;
+elseIfStatement:
+    ELSE IF '(' condition ')' block
+    ;
+elseStatement:
+    ELSE block
+    ;
 
-switchStatement: SWITCH'('ID')' switchBody;
-switchBody: '{' cases '}';
-cases: case+ defaultCase;
-case: (CASE DIGITS | CASE CHARACTERS)':' caseBody;
-defaultCase: DEFAULT':' caseBody;
-caseBody: statements* BREAK';';
+switchStatement:
+    SWITCH'('ID')' switchBody
+    ;
+switchBody:
+    '{' cases '}'
+    ;
+cases:
+    case+ defaultCase
+    ;
+case:
+    (CASE number | CASE CHARACTERS)':' caseBody
+    ;
+defaultCase:
+    DEFAULT':' caseBody
+    ;
+caseBody:
+    statements* BREAK SEMICOLON
+    ;
 
 
 //loops
-whileStatement: WHILE '(' condition ')' block;
+whileStatement:
+    WHILE '(' condition ')' block
+    ;
 
-doWhileStatement: DO block WHILE '(' condition ');';
+doWhileStatement:
+    DO block WHILE '(' condition ')' SEMICOLON
+    ;
 
-forStatement: FOR '(' initialCondition ';' condition ';' increment')' block;
-initialCondition: type? assignment;
-increment: assignment;
+forStatement:
+    FOR '(' initialCondition SEMICOLON condition SEMICOLON increment')' block
+    ;
+initialCondition:
+    type? assignment
+    ;
+increment:
+    assignment
+    ;
 
-foreachStatement: FOREACH '(' varOrType ID 'in' ID ')' block;
+foreachStatement:
+    FOREACH '(' varOrType ID 'in' ID ')' block
+    ;
 
 
 //variables
-type: INT | DOUBLE | STRING | LIST | DYNAMIC | BOOL | OBJECT | FUNCTION;
-varOrType: VAR | type;
-declaration: LATE? FINAL type? ID initialization?
-           | CONST type? ID initialization
-           | LATE? varOrType ID initialization?
-           ;
-initialization: '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list);
-assignment: ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list);
-list: '[' ((ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction)',')* ']';
+type:
+    INT | DOUBLE | STRING | LIST | DYNAMIC | BOOL | OBJECT | FUNCTION
+    ;
+varOrType:
+    VAR | type
+    ;
+declaration:
+    LATE? FINAL type? ID initialization?
+    | CONST type? ID initialization
+    | LATE? varOrType ID initialization?
+    ;
+initialization:
+    '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
+    ;
+assignment:
+    (ID'.')?ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
+    ;
+list:
+    '[' ( (listElement COMMA)* listElement)? ']'
+    ;
+listElement:
+    ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction
+    ;
 
 //functions
-voidOrType: VOID | type;
-signature: voidOrType? ID arguments;
-function: signature (ASYNC | ASYNC_STAR)? functionBody;
-unnamedFunction: arguments (ASYNC | ASYNC_STAR)? functionBody;
-//فصلت هالقد مشان قصة الفواصل وين لازم تنحط ووين لا وتركت فراغ مشان اذا ما حط ولا ارغيومنت
-arguments: '(' (positionalNamedArguments | positionalArguments | namedArguments | ) ')';
-positionalNamedArguments: (positionalArguments',')+ namedArguments+;
-positionalArguments: (arg',')* arg;
-namedArguments: '{' (REQUIRED? arg',')* REQUIRED? arg '}';
-arg: type? ID;
-functionBody: '{' statements* returnStatement? '}';
-returnStatement: RETURN (ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction | condition)? ';';
+voidOrType:
+    VOID | type
+    ;
+signature:
+    voidOrType? ID arguments
+    ;
+function:
+    signature (ASYNC | ASYNC_STAR)? functionBody
+    ;
+unnamedFunction:
+    arguments (ASYNC | ASYNC_STAR)? functionBody
+    ;
+arguments:
+    '(' (positionalNamedArguments | positionalArguments | namedArguments | ) ')'
+    ;
+positionalNamedArguments:
+    (positionalArguments COMMA)+ namedArguments+
+    ;
+positionalArguments:
+    (arg COMMA)* arg
+    ;
+namedArguments:
+    '{' (REQUIRED? arg COMMA)* REQUIRED? arg '}'
+    ;
+arg:
+    type? ID
+    ;
+functionBody:
+    '{' statements* returnStatement? '}'
+    ;
+returnStatement:
+    RETURN (ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction | condition)? SEMICOLON
+    ;
 
 
 //classes
-class: ABSTRACT? CLASS ID (EXTENDS ID)? (IMPLEMENTS ID)? classBody;
-classBody:'{' (attribute | method)* defaultConstructer? (attribute | method)* '}';
-attribute: (STATIC? declaration';');
-method: OVERRIDE? signature methodBody
-      | STATIC signature methodBody
-      | signature';'
-      | namedConstructer
-      ;
-methodBody: '{' (statements | thisStatement';')* '}';
-thisStatement: THIS'.'ID '=' (ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction);
-defaultConstructer: ID '(' consArguments ( ');' | ')' methodBody );
-namedConstructer: ID'.'ID '(' consArguments ( ');' | ')' methodBody);
-consArguments: (consPositionalNamedArguments | consPositionalArguments | consNamedArguments | );
-consPositionalNamedArguments: (consPositionalArguments',')+ consNamedArguments+;
-consPositionalArguments: (consArg',')* consArg;
-consNamedArguments: '{' (REQUIRED? consArg',')* REQUIRED? consArg '}';
-consArg: (type? ID) | (THIS'.'ID);
+class:
+    ABSTRACT? CLASS ID (EXTENDS ID)? (IMPLEMENTS ID)? classBody
+    ;
+classBody:
+    '{' (attribute | method)* defaultConstructer? (attribute | method)* '}'
+    ;
+attribute:
+    (STATIC? declaration SEMICOLON)
+    ;
+method:
+    OVERRIDE? signature methodBody
+    | STATIC signature methodBody
+    | signature SEMICOLON
+    | namedConstructer
+    ;
+methodBody:
+    '{' (statements | (thisStatement SEMICOLON))* returnStatement? '}'
+    ;
+thisStatement:
+    THIS'.'ID '=' (ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction)
+    ;
+defaultConstructer:
+    ID '(' consArguments ( (')' SEMICOLON) | (')' methodBody) )
+    ;
+namedConstructer:
+    ID'.'ID '(' consArguments ( (')' SEMICOLON) | (')' methodBody) )
+    ;
+consArguments:
+    (consPositionalNamedArguments | consPositionalArguments | consNamedArguments | )
+    ;
+consPositionalNamedArguments:
+    (consPositionalArguments COMMA)+ consNamedArguments+
+    ;
+consPositionalArguments:
+    (consArg COMMA)* consArg
+    ;
+consNamedArguments:
+    '{' (REQUIRED? consArg COMMA)* REQUIRED? consArg '}'
+    ;
+consArg:
+    (type? ID) | (THIS'.'ID)
+    ;
 
 
 //function calls and objects
-functionCall: AWAIT? ID '(' parameters ')';
-object: NEW ID '(' parameters ')'
-      | component
-      ;
-parameters: (positionalNamedParameters | positionalParameters | namedParameters | );
-positionalNamedParameters: (positionalParameters',')+ namedParameters+;
-positionalParameters: (parameter',')* parameter;
-namedParameters: (ID':'parameter',')* ID':'parameter;
-parameter: ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction;
+functionCall:
+    AWAIT? (ID'.')?ID '(' parameters ')'
+    ;
+object:
+    NEW ID '(' parameters ')'
+    | component
+    ;
+parameters:
+    (positionalNamedParameters | positionalParameters | namedParameters | )
+    ;
+positionalNamedParameters:
+    (positionalParameters COMMA)+ namedParameters+
+    ;
+positionalParameters:
+    (parameter COMMA)* parameter COMMA?
+    ;
+namedParameters:
+    (ID':'parameter COMMA)* ID':'parameter COMMA?
+    ;
+parameter:
+    ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction
+    ;
 
 
 //expressions
-expression: expression '*' expression
-          | expression '/' expression
-          | expression '+' expression
-          | expression '-' expression
-          | ID
-          | DIGITS
-          ;
+expression:
+    expression '*' expression
+    | expression '/' expression
+    | expression '+' expression
+    | expression '-' expression
+    | number
+    | ID
+    ;
 
 
 ///////////////////////////FLUTTER///////////////////////////
-component: materialApp
-         | scaffold
-         | column
-         | row
-         | stack
-         | text
-         | container
-         | inkWell
-         | image
-         | button
-         ;
+component:
+    materialApp
+    | scrollView
+    | scaffold
+    | column
+    | row
+    | stack
+    | text
+    | container
+    | sizedBox
+    | padding
+    | inkWell
+    | image
+    | button
+    ;
 
-materialApp: NEW MATERIAL_APP '(' materialAppAtts ')' ;
-materialAppAtts: (TITLE':'CHARACTERS',')? (HOME':'object',')? ;
+materialApp:
+    NEW MATERIAL_APP '(' materialAppAtts ')'
+    ;
+materialAppAtts:
+    (TITLE':'CHARACTERS COMMA)? (HOME':'object COMMA?)?
+    ;
 
-scaffold: NEW SCAFFOLD '(' scaffoldAtts ')' ;
-scaffoldAtts: (BACKGROUND_COLOR':'COLORS',')? (BODY':'object',')? ;
+scaffold:
+    NEW SCAFFOLD '(' scaffoldAtts ')'
+    ;
+scaffoldAtts:
+    (BACKGROUND_COLOR':'COLORS COMMA)? (BODY':'object COMMA?)?
+    ;
 
-column: NEW COLUMN '(' column_rowAtts ')' ;
-row: NEW ROW '(' column_rowAtts ')' ;
-column_rowAtts: (MAIN_AXIS_ALIGNMENT':'ALIGNMENT',')? (CROSS_AXIS_ALIGNMENT':'ALIGNMENT',')? (CHILDREN':'list',')? ;
+column:
+    NEW COLUMN '(' column_rowAtts ')'
+    ;
+row:
+    NEW ROW '(' column_rowAtts ')'
+    ;
+column_rowAtts:
+    (MAIN_AXIS_ALIGNMENT':'ALIGNMENT COMMA)? (CROSS_AXIS_ALIGNMENT':'ALIGNMENT COMMA)? (CHILDREN':'list COMMA?)?
+    ;
 
-stack: NEW STACK '(' stackAtts ')' ;
-stackAtts: (FIT':'STACK_FIT',')? (CHILDREN':'list',')? ;
+stack:
+    NEW STACK '(' stackAtts ')'
+    ;
+stackAtts:
+    (FIT':'STACK_FIT COMMA)? (CHILDREN':'list COMMA?)?
+    ;
 
-text: NEW TEXT '(' CHARACTERS',' textAtts ')' ;
-textAtts: (COLOR':'COLORS',')? (SIZE':'DIGITS)? (STYLE':'STYLES)?;
+text:
+    NEW TEXT '(' CHARACTERS',' textAtts ')'
+    ;
+textAtts:
+    (COLOR':'COLORS COMMA)? (SIZE':'INT_NUM COMMA)? (STYLE':'STYLES COMMA?)?
+    ;
 
-container: NEW CONTAINER '(' containerAtts ')' ;
-containerAtts: (WIDTH':'DIGITS',')? (HEIGHT':'DIGITS',')? (CHILD':'object)? ;
+container:
+    NEW CONTAINER '(' containerAtts ')'
+    ;
+containerAtts:
+    (MARGIN':'values COMMA)? (WIDTH':'INT_NUM COMMA)? (HEIGHT':'INT_NUM COMMA)? (CHILD':'object COMMA?)?
+    ;
 
-inkWell: NEW INK_WELL '(' inkWellAtts ')' ;
-inkWellAtts: (ON_TAP':'(functionCall | unnamedFunction)',') (CHILD':'object)? ;
+sizedBox:
+    NEW SIZEDBOX '(' sizedBoxAtts ')'
+    ;
+sizedBoxAtts:
+    (WIDTH':'INT_NUM COMMA)? (HEIGHT':'INT_NUM COMMA)? (CHILD':'object COMMA?)?
+    ;
 
-image: NEW IMAGE '(' CHARACTERS',' imageAtts ')' ;
-imageAtts: (FIT':'BOX_FIT',')? ;
+padding:
+    NEW PADDING '(' paddingAtts ')'
+    ;
+paddingAtts:
+    (VALUES':'values COMMA)? (CHILD':'object COMMA?)?
+    ;
 
-button: NEW BUTTON '(' buttonAtts ')' ;
-buttonAtts: (ACTION':'(functionCall | unnamedFunction)',')? (CHILD':'text',')? (COLOR':'COLORS',')? ;
+values:
+    ZERO
+    | ALL '(' INT_NUM ')'
+    | SYMMETRIC '(' (HORIZONTAL':'INT_NUM COMMA) (VERTICAL':' INT_NUM COMMA?) ')'
+    | COSTUME '(' (LEFT':'INT_NUM COMMA) (TOP':'INT_NUM COMMA) (RIGHT':'INT_NUM COMMA) (BOTTOM':'INT_NUM COMMA?) ')'
+    ;
 
+inkWell:
+    NEW INK_WELL '(' inkWellAtts ')'
+    ;
+inkWellAtts:
+    (ON_TAP':'(functionCall | unnamedFunction) COMMA) (CHILD':'object COMMA?)?
+    ;
 
+image:
+    NEW IMAGE '(' CHARACTERS COMMA imageAtts ')'
+    ;
+imageAtts:
+    (FIT':'BOX_FIT COMMA)?
+    ;
 
+button:
+    NEW BUTTON '(' buttonAtts ')'
+    ;
+buttonAtts:
+    (ON_TAP':'(functionCall | unnamedFunction) COMMA) (CHILD':'text COMMA)? (COLOR':'COLORS COMMA?)?
+    ;
+
+scrollView:
+    NEW SCROLL_VIEW '(' scrollViewAtts ')'
+    ;
+scrollViewAtts:
+    (SCROLL_DIRECTION':'DIRECTION COMMA) (CHILD':'object COMMA?)?
+    ;
 
 //TOKENS
 
@@ -230,7 +422,6 @@ COLUMN: 'Column';
 ROW: 'Row';
 MAIN_AXIS_ALIGNMENT: 'mainAxisAlignment';
 CROSS_AXIS_ALIGNMENT: 'crossAxisAlignment';
-CHILDREN: 'children';
 /////////////
 TEXT: 'Text';
 COLOR: 'color';
@@ -238,28 +429,55 @@ SIZE: 'size';
 STYLE: 'style';
 /////////////
 CONTAINER: 'Container';
+SIZEDBOX: 'SizedBox';
 WIDTH: 'width';
 HEIGHT: 'height';
-CHILD: 'child';
+MARGIN: 'margin';
 /////////////
 INK_WELL: 'InkWell';
-ON_TAP: 'onTap';
 /////////////
 IMAGE: 'Image';
 FIT: 'fit';
+BOX_FIT: 'BoxFit.cover' | 'BoxFit.fill' | 'BoxFit.fitWidth' | 'BoxFit.fitHeight';
 /////////////
 STACK: 'Stack';
+STACK_FIT: 'StackFit.expand' | 'StackFit.loose';
 /////////////
 BUTTON: 'Button';
-ACTION: 'action';
 /////////////
+SCROLL_VIEW: 'ScrollView';
+SCROLL_DIRECTION: 'scrollDirection';
+DIRECTION: HORIZONTAL | VERTICAL;
+/////////////
+PADDING: 'Padding';
+VALUES: 'values';
+ZERO: 'Values.zero';
+ALL: 'Values.all';
+SYMMETRIC: 'Values.symmetric';
+COSTUME: 'Values.costume';
+LEFT: 'left';
+RIGHT: 'right';
+TOP: 'top';
+BOTTOM: 'bottom';
+/////////////
+CHILD: 'child';
+CHILDREN: 'children';
+ON_TAP: 'onTap';
 COLORS: 'Purple' | 'Blue' | 'Yellow' | 'Black' | 'White' | 'Green' | 'Red';
 STYLES: 'Italic' | 'Bold' | 'BoldItalic';
-BOX_FIT: 'BoxFit.cover' | 'BoxFit.fill' | 'BoxFit.fitWidth' | 'BoxFit.fitHeight';
-STACK_FIT: 'StackFit.expand' | 'StackFit.loose';
 ALIGNMENT: 'start' | 'center' | 'end' | 'spaceBetween' | 'spaceEvenly' | 'spaceAround';
+HORIZONTAL: 'horizontal';
+VERTICAL: 'vertical';
 
 //GENERAL
-ID: '_'?[a-zA-Z]+[0-9]*;
-DIGITS: '-' ? ( '0' | '0.'[0-9]+ | [1-9]+[0-9]* ('.'[0-9]+)? );
+COMMA: ',';
+SEMICOLON: ';';
+INT_NUM: ( '0' | [1-9]+DIGIT* );
+DOUBLE_NUM: ( '0.'DIGIT+ | [1-9]+DIGIT* ('.'DIGIT+) );
+//اكتر فاصلتين برانيات للتوكن نفسو
+//اكتر فاصلتين جوانيات للريغيولر اكسبريشن
+//الفاصلتين يلي قبلهن سلاش لينحطو ضمن التوكن نفسو يعني تقريبا يصير سترينغ رسمي
 CHARACTERS: '\''[a-zA-Z0-9!@#$%^&*+_:,.\-=]*'\'';
+ID: '_'?[a-zA-Z]+[0-9]*;
+
+fragment DIGIT: [0-9];
