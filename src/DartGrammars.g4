@@ -85,10 +85,11 @@ forStatement
     : FOR '(' initialCondition SEMICOLON condition SEMICOLON increment')' block
     ;
 initialCondition
-    : type? assignment
+    : type? ID '=' expression
+    | ID
     ;
 increment
-    : assignment
+    : ID ('+=' | '-=' | '*=' | '/=') expression
     ;
 
 foreachStatement
