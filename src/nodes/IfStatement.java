@@ -17,15 +17,28 @@ public class IfStatement extends Statement{
             this.elseIfs = elseIfs;
             this.anElse = anElse;
         }
-        else if(anElse != null){
-            this.anElse = anElse;
-        }else{
-            this.elseIfs = new ArrayList<>();
+        else {
+            if (anElse != null){
+                this.anElse = anElse;
+            }
         }
     }
 
     @Override
     public String toString() {
-        return "if" + '(' + condition.toString() + ')' + '\n' + block.toString();
+        if (elseIfs != null){
+            String wholeIf = "if" + '(' + condition.toString() + ')' + '\n' + block.toString() + '\n' ;
+            for (ElseIf elseIf: elseIfs) {
+                wholeIf = wholeIf.concat(elseIf.toString() + '\n');
+            }
+            wholeIf = wholeIf.concat(anElse.toString());
+            return wholeIf;
+        }else {
+            if (anElse != null){
+                return "if" + '(' + condition.toString() + ')' + '\n' + block.toString() + '\n' + anElse.toString();
+            }else {
+                return "if" + '(' + condition.toString() + ')' + '\n' + block.toString();
+            }
+        }
     }
 }

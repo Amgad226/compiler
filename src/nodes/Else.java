@@ -9,6 +9,6 @@ public class Else extends Node{
 
     @Override
     public String toString() {
-        return "else" + block.toString();
+        return "else" + '\n' + block.toString();
     }
 }
