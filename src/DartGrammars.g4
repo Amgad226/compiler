@@ -2,7 +2,7 @@ grammar DartGrammars;
 
 // to be changed
 start
-    : (class | function)+
+    : (class | function)+ EOF
     ;
 
 number
@@ -17,10 +17,7 @@ negative
 
 //RULES
 block
-    : '{' statements* '}'
-    ;
-statements
-    : statement+
+    : '{' statement* '}'
     ;
 statement
     : ifStatement
@@ -33,10 +30,11 @@ statement
     | assignment SEMICOLON
     | function
     | functionCall SEMICOLON
+    | object
     ;
 
 condition
-    : TRUE | FALSE | comparison
+    : comparison
     ;
 
 comparison
@@ -48,12 +46,12 @@ comparison
 
 //conditions process
 ifStatement
-    : IF '(' condition ')' block (elseIfStatement* elseStatement)*
+    : IF '(' condition ')' block (elseIf* else)?
     ;
-elseIfStatement
+elseIf
     : ELSE IF '(' condition ')' block
     ;
-elseStatement
+else
     : ELSE block
     ;
 
@@ -61,10 +59,7 @@ switchStatement
     : SWITCH'('ID')' switchBody
     ;
 switchBody
-    : '{' cases '}'
-    ;
-cases
-    : case+ defaultCase
+    : '{' case+ defaultCase '}'
     ;
 case
     : (CASE number | CASE CHARACTERS)':' caseBody
@@ -73,7 +68,7 @@ defaultCase
     : DEFAULT':' caseBody
     ;
 caseBody
-    : statements* BREAK SEMICOLON
+    : statement* BREAK? SEMICOLON
     ;
 
 
@@ -155,7 +150,7 @@ arg
     : type? ID
     ;
 functionBody
-    : '{' statements* returnStatement? '}'
+    : '{' statement* returnStatement? '}'
     ;
 returnStatement
     : RETURN (ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction | condition)? SEMICOLON
@@ -179,7 +174,7 @@ method
     | namedConstructer
     ;
 methodBody
-    : '{' (statements | (thisStatement SEMICOLON))* returnStatement? '}'
+    : '{' (statement | (thisStatement SEMICOLON))* returnStatement? '}'
     ;
 thisStatement
     : THIS'.'ID '=' (ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction)
@@ -387,9 +382,9 @@ paddingAtts
     ;
 
 values
-    : ZERO
-    | ALL '(' INT_NUM ')'
-    | SYMMETRIC '(' horizontalOrVertical+ ')'
+    : ZERO //values.zero
+    | ALL '(' INT_NUM ')' //values.all(5)
+    | SYMMETRIC '(' horizontalOrVertical+ ')' //values.symmetric(horizontal: 4, vertical: 8)
     | COSTUME '(' costumeValues+ ')'
     ;
 horizontalOrVertical
@@ -412,7 +407,7 @@ inkWellAtts
     | child
     ;
 onTap
-    : ON_TAP':'(functionCall | unnamedFunction) COMMA?
+    : ON_TAP':'(functionCall | unnamedFunction) COMMA? //onTap: (){}
     ;
 
 
@@ -538,7 +533,7 @@ FIT: 'fit';
 BOX_FIT: 'BoxFit.cover' | 'BoxFit.fill' | 'BoxFit.fitWidth' | 'BoxFit.fitHeight';
 /////////////
 STACK: 'Stack';
-STACK_FIT: 'StackFit.expand' | 'StackFit.loose';
+STACK_FIT: 'StackFit.expanded' | 'StackFit.loose';
 /////////////
 BUTTON: 'Button';
 /////////////
