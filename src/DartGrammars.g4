@@ -85,7 +85,8 @@ forStatement
     : FOR '(' initialCondition SEMICOLON condition SEMICOLON increment')' block
     ;
 initialCondition
-    : type? ID '=' expression
+    : (VAR | DOUBLE | INT) ID '=' expression
+    | ID '=' expression
     | ID
     ;
 increment
