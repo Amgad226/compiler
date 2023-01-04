@@ -62,13 +62,14 @@ switchBody
     : '{' case+ defaultCase '}'
     ;
 case
-    : (CASE number | CASE CHARACTERS)':' caseBody
+    : CASE number ':' caseBody
+    | CASE CHARACTERS ':' caseBody
     ;
 defaultCase
     : DEFAULT':' caseBody
     ;
 caseBody
-    : statement* BREAK? SEMICOLON
+    : statement* (BREAK SEMICOLON)?
     ;
 
 
