@@ -10,6 +10,7 @@ public class InitialConditionDeclaration extends InitialCondition{
         super(id);
         this.type = type;
         this.value = value;
+
     }
 
     @Override
