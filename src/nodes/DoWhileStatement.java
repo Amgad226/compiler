@@ -16,9 +16,10 @@ public class DoWhileStatement extends  Statement {
     public String toString() {
 
 
-        return "do"  + block.toString()  +'\n'+  "while"+'(' + condition.toString() + ')';
+        return "do"  + block.toString()  +'\n'+  "while("  + condition.toString() + ");";
     }
 }
+
 /*
   do{
   }
