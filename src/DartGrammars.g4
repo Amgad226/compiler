@@ -98,6 +98,7 @@ foreachStatement
     ;
 
 
+
 //variables
 type
     : INT | DOUBLE | STRING | LIST | DYNAMIC | BOOL | OBJECT | FUNCTION
