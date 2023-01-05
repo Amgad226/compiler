@@ -12,7 +12,7 @@ public class Column extends Component{
         this.column_rowAtts= listt;
     }
     public void addColumn_rowAtts(Column_rowAtts cm ){
-        column_rowAtts.add(cm);
+        this.column_rowAtts.add(cm);
     }
     @Override
     public String toString() {

@@ -1,4 +1,6 @@
 package flutter;
 
-public abstract class Values {
+import nodes.Node;
+
+public abstract class Values extends PaddingAtts {
 }
