@@ -5,6 +5,7 @@ start
     : (class | function)+ EOF
     ;
 
+
 number
     : positive | negative
     ;
@@ -14,6 +15,7 @@ positive
 negative
     : '-' (INT_NUM | DOUBLE_NUM)
     ;
+
 
 //RULES
 block
@@ -99,7 +101,6 @@ foreachStatement
     ;
 
 
-
 //variables
 type
     : INT | DOUBLE | STRING | LIST | DYNAMIC | BOOL | OBJECT | FUNCTION
@@ -116,7 +117,8 @@ initialization
     : '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
     ;
 assignment
-    : (ID'.')?ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
+    : ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
+    | ID'.'ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
     ;
 list
     : '[' ( (listElement COMMA)* listElement)? ']'
@@ -124,6 +126,7 @@ list
 listElement
     : ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction
     ;
+
 
 //functions
 voidOrType
@@ -139,7 +142,10 @@ unnamedFunction
     : arguments (ASYNC | ASYNC_STAR)? functionBody
     ;
 arguments
-    : '(' (positionalNamedArguments | positionalArguments | namedArguments | ) ')'
+    : '(' positionalNamedArguments ')'
+    | '(' positionalArguments ')'
+    | '(' namedArguments ')'
+    | '('  ')'
     ;
 positionalNamedArguments
     : (positionalArguments COMMA)+ namedArguments+
