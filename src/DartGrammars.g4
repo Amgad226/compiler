@@ -136,10 +136,10 @@ signature
     : voidOrType? ID arguments
     ;
 function
-    : signature (ASYNC | ASYNC_STAR)? functionBody
+    : signature ASYNC? functionBody
     ;
 unnamedFunction
-    : arguments (ASYNC | ASYNC_STAR)? functionBody
+    : arguments ASYNC? functionBody
     ;
 arguments
     : '(' positionalNamedArguments ')'
@@ -178,8 +178,8 @@ attribute
     : (STATIC? declaration SEMICOLON)
     ;
 method
-    : OVERRIDE? signature methodBody
-    | STATIC signature methodBody
+    : OVERRIDE? signature ASYNC? methodBody
+    | STATIC signature ASYNC? methodBody
     | signature SEMICOLON
     | namedConstructer
     ;
@@ -492,7 +492,6 @@ RETURN: 'return';
 LATE: 'late';
 REQUIRED: 'required';
 ASYNC: 'async';
-ASYNC_STAR: 'async*';
 AWAIT: 'await';
 
 //OOP
