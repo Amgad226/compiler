@@ -357,14 +357,10 @@ container
     : NEW CONTAINER '(' containerAtts* ')'
     ;
 containerAtts
-    : margin
-    | width
+    : width
     | height
     | child
     | color
-    ;
-margin
-    : MARGIN':'values COMMA?
     ;
 width
     : WIDTH':'INT_NUM COMMA?
