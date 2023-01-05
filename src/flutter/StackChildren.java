@@ -1,8 +1,8 @@
 package flutter;
 
-public  class Children extends Column_rowAtts{
+public class StackChildren extends StackAtts{
     String list ;
-    public Children(String list){
+    public StackChildren(String list){
         this.list=list;
     }
 
@@ -11,5 +11,3 @@ public  class Children extends Column_rowAtts{
         return "children:"+ list.toString();
     }
 }
-//    : CHILDREN':'list COMMA?
-
