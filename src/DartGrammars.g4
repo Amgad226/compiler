@@ -5,6 +5,7 @@ start
     : (class | function)+ EOF
     ;
 
+
 number
     : positive | negative
     ;
@@ -14,6 +15,7 @@ positive
 negative
     : '-' (INT_NUM | DOUBLE_NUM)
     ;
+
 
 //RULES
 block
@@ -99,7 +101,6 @@ foreachStatement
     ;
 
 
-
 //variables
 type
     : INT | DOUBLE | STRING | LIST | DYNAMIC | BOOL | OBJECT | FUNCTION
@@ -116,7 +117,8 @@ initialization
     : '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
     ;
 assignment
-    : (ID'.')?ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
+    : ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
+    | ID'.'ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
     ;
 list
     : '[' ( (listElement COMMA)* listElement)? ']'
@@ -124,6 +126,7 @@ list
 listElement
     : ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction
     ;
+
 
 //functions
 voidOrType
@@ -133,13 +136,16 @@ signature
     : voidOrType? ID arguments
     ;
 function
-    : signature (ASYNC | ASYNC_STAR)? functionBody
+    : signature ASYNC? functionBody
     ;
 unnamedFunction
-    : arguments (ASYNC | ASYNC_STAR)? functionBody
+    : arguments ASYNC? functionBody
     ;
 arguments
-    : '(' (positionalNamedArguments | positionalArguments | namedArguments | ) ')'
+    : '(' positionalNamedArguments ')'
+    | '(' positionalArguments ')'
+    | '(' namedArguments ')'
+    | '('  ')'
     ;
 positionalNamedArguments
     : (positionalArguments COMMA)+ namedArguments+
@@ -172,8 +178,8 @@ attribute
     : (STATIC? declaration SEMICOLON)
     ;
 method
-    : OVERRIDE? signature methodBody
-    | STATIC signature methodBody
+    : OVERRIDE? signature ASYNC? methodBody
+    | STATIC signature ASYNC? methodBody
     | signature SEMICOLON
     | namedConstructer
     ;
@@ -208,14 +214,18 @@ consArg
 
 //function calls and objects
 functionCall
-    : AWAIT? (ID'.')?ID '(' parameters ')'
+    : AWAIT? ID parameters
+    | AWAIT? ID'.'ID parameters
     ;
 object
     : NEW ID '(' parameters ')'
     | component
     ;
 parameters
-    : (positionalNamedParameters | positionalParameters | namedParameters | )
+    : '(' positionalNamedParameters ')'
+    | '(' positionalParameters ')'
+    | '(' namedParameters ')'
+    | '(' ')'
     ;
 positionalNamedParameters
     : (positionalParameters COMMA)+ namedParameters+
@@ -482,7 +492,6 @@ RETURN: 'return';
 LATE: 'late';
 REQUIRED: 'required';
 ASYNC: 'async';
-ASYNC_STAR: 'async*';
 AWAIT: 'await';
 
 //OOP
