@@ -7,4 +7,9 @@ public class ObjectAssignment extends Assignment {
         super(id, value);
         this.objectId = objectId;
     }
+
+    @Override
+    public String toString() {
+        return objectId + "." + id + "=" + value.toString();
+    }
 }

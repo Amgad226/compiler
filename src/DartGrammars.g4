@@ -214,14 +214,18 @@ consArg
 
 //function calls and objects
 functionCall
-    : AWAIT? (ID'.')?ID '(' parameters ')'
+    : AWAIT? ID parameters
+    | AWAIT? ID'.'ID parameters
     ;
 object
     : NEW ID '(' parameters ')'
     | component
     ;
 parameters
-    : (positionalNamedParameters | positionalParameters | namedParameters | )
+    : '(' positionalNamedParameters ')'
+    | '(' positionalParameters ')'
+    | '(' namedParameters ')'
+    | '(' ')'
     ;
 positionalNamedParameters
     : (positionalParameters COMMA)+ namedParameters+
