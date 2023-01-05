@@ -1,0 +1,107 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"5dc27ed2-7e10-4449-80ff-650701fa7b8e\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2JrHb0Xg0YPtg9xPLFWrK1oidsb\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"1\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;D:/Users/ASUS/Desktop/compiler - Copy&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"nodes\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"5dc27ed2-7e10-4449-80ff-650701fa7b8e\" name=\"Changes\" comment=\"\" />\r\n      <created>1672829352233</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1672829352233</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision d737cbe2d2d241f26fc8c6f399e163a01ca4e2da)
++++ b/.idea/workspace.xml	(date 1672933242682)
+@@ -2,7 +2,10 @@
+ <project version="4">
+   <component name="ChangeListManager">
+     <list default="true" id="5dc27ed2-7e10-4449-80ff-650701fa7b8e" name="Changes" comment="">
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/compiler.iml" beforeDir="false" afterPath="$PROJECT_DIR$/compiler.iml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/DartGrammars.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/DartGrammars.g4" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -23,7 +26,7 @@
+     <option name="stateVersion" value="1" />
+   </component>
+   <component name="ProjectId" id="2JrHb0Xg0YPtg9xPLFWrK1oidsb" />
+-  <component name="ProjectLevelVcsManager">
++  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+     <ConfirmationsSetting value="1" id="Add" />
+   </component>
+   <component name="ProjectViewState">
+@@ -63,7 +66,19 @@
+       <map>
+         <entry key="MAIN">
+           <value>
+-            <State />
++            <State>
++              <option name="FILTERS">
++                <map>
++                  <entry key="branch">
++                    <value>
++                      <list>
++                        <option value="origin/main" />
++                      </list>
++                    </value>
++                  </entry>
++                </map>
++              </option>
++            </State>
+           </value>
+         </entry>
+       </map>
+Index: src/DartGrammars.g4
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>grammar DartGrammars;\r\n\r\n// to be changed\r\nstart\r\n    : (class | function)+ EOF\r\n    ;\r\n\r\nnumber\r\n    : positive | negative\r\n    ;\r\npositive\r\n    : INT_NUM | DOUBLE_NUM\r\n    ;\r\nnegative\r\n    : '-' (INT_NUM | DOUBLE_NUM)\r\n    ;\r\n\r\n//RULES\r\nblock\r\n    : '{' statement* '}'\r\n    ;\r\nstatement\r\n    : ifStatement\r\n    | switchStatement\r\n    | whileStatement\r\n    | doWhileStatement\r\n    | forStatement\r\n    | foreachStatement\r\n    | declaration SEMICOLON\r\n    | assignment SEMICOLON\r\n    | function\r\n    | functionCall SEMICOLON\r\n    | object\r\n    ;\r\n\r\ncondition\r\n    : comparison\r\n    ;\r\n\r\ncomparison\r\n    : ID ('<' | '<=' | '>' | '>=' | '==' | '!=') ID\r\n    | ID ('<' | '<=' | '>' | '>=' | '==' | '!=') expression\r\n    | ID ('==' | '!=') CHARACTERS\r\n    ;\r\n\r\n\r\n//conditions process\r\nifStatement\r\n    : IF '(' condition ')' block (elseIf* else)?\r\n    ;\r\nelseIf\r\n    : ELSE IF '(' condition ')' block\r\n    ;\r\nelse\r\n    : ELSE block\r\n    ;\r\n\r\nswitchStatement\r\n    : SWITCH'('ID')' switchBody\r\n    ;\r\nswitchBody\r\n    : '{' case+ defaultCase '}'\r\n    ;\r\ncase\r\n    : CASE number ':' caseBody\r\n    | CASE CHARACTERS ':' caseBody\r\n    ;\r\ndefaultCase\r\n    : DEFAULT':' caseBody\r\n    ;\r\ncaseBody\r\n    : statement* (BREAK SEMICOLON)?\r\n    ;\r\n\r\n\r\n//loops\r\nwhileStatement\r\n    : WHILE '(' condition ')' block\r\n    ;\r\n\r\ndoWhileStatement\r\n    : DO block WHILE '(' condition ')' SEMICOLON\r\n    ;\r\n\r\nforStatement\r\n    : FOR '(' initialCondition SEMICOLON condition SEMICOLON increment')' block\r\n    ;\r\ninitialCondition\r\n    : (VAR | DOUBLE | INT) ID '=' expression\r\n    | ID '=' expression\r\n    | ID\r\n    ;\r\nincrement\r\n    : ID ('+=' | '-=' | '*=' | '/=') expression\r\n    ;\r\n\r\nforeachStatement\r\n    : FOREACH '(' varOrType ID 'in' ID ')' block\r\n    ;\r\n\r\n\r\n\r\n//variables\r\ntype\r\n    : INT | DOUBLE | STRING | LIST | DYNAMIC | BOOL | OBJECT | FUNCTION\r\n    ;\r\nvarOrType\r\n    : VAR | type\r\n    ;\r\ndeclaration\r\n    : LATE? FINAL type? ID initialization?\r\n    | CONST type? ID initialization\r\n    | LATE? varOrType ID initialization?\r\n    ;\r\ninitialization\r\n    : '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)\r\n    ;\r\nassignment\r\n    : (ID'.')?ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)\r\n    ;\r\nlist\r\n    : '[' ( (listElement COMMA)* listElement)? ']'\r\n    ;\r\nlistElement\r\n    : ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction\r\n    ;\r\n\r\n//functions\r\nvoidOrType\r\n    : VOID | type\r\n    ;\r\nsignature\r\n    : voidOrType? ID arguments\r\n    ;\r\nfunction\r\n    : signature (ASYNC | ASYNC_STAR)? functionBody\r\n    ;\r\nunnamedFunction\r\n    : arguments (ASYNC | ASYNC_STAR)? functionBody\r\n    ;\r\narguments\r\n    : '(' (positionalNamedArguments | positionalArguments | namedArguments | ) ')'\r\n    ;\r\npositionalNamedArguments\r\n    : (positionalArguments COMMA)+ namedArguments+\r\n    ;\r\npositionalArguments\r\n    : (arg COMMA)* arg\r\n    ;\r\nnamedArguments\r\n    : '{' (REQUIRED? arg COMMA)* REQUIRED? arg '}'\r\n    ;\r\narg\r\n    : type? ID\r\n    ;\r\nfunctionBody\r\n    : '{' statement* returnStatement? '}'\r\n    ;\r\nreturnStatement\r\n    : RETURN (ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction | condition)? SEMICOLON\r\n    ;\r\n\r\n\r\n//classes\r\nclass\r\n    : ABSTRACT? CLASS ID (EXTENDS ID)? (IMPLEMENTS ID)? classBody\r\n    ;\r\nclassBody\r\n    : '{' (attribute | method)* defaultConstructer? (attribute | method)* '}'\r\n    ;\r\nattribute\r\n    : (STATIC? declaration SEMICOLON)\r\n    ;\r\nmethod\r\n    : OVERRIDE? signature methodBody\r\n    | STATIC signature methodBody\r\n    | signature SEMICOLON\r\n    | namedConstructer\r\n    ;\r\nmethodBody\r\n    : '{' (statement | (thisStatement SEMICOLON))* returnStatement? '}'\r\n    ;\r\nthisStatement\r\n    : THIS'.'ID '=' (ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction)\r\n    ;\r\ndefaultConstructer\r\n    : ID '(' consArguments ( (')' SEMICOLON) | (')' methodBody) )\r\n    ;\r\nnamedConstructer\r\n    : ID'.'ID '(' consArguments ( (')' SEMICOLON) | (')' methodBody) )\r\n    ;\r\nconsArguments\r\n    : (consPositionalNamedArguments | consPositionalArguments | consNamedArguments | )\r\n    ;\r\nconsPositionalNamedArguments\r\n    : (consPositionalArguments COMMA)+ consNamedArguments+\r\n    ;\r\nconsPositionalArguments\r\n    : (consArg COMMA)* consArg\r\n    ;\r\nconsNamedArguments\r\n    : '{' (REQUIRED? consArg COMMA)* REQUIRED? consArg '}'\r\n    ;\r\nconsArg\r\n    : (type? ID) | (THIS'.'ID)\r\n    ;\r\n\r\n\r\n//function calls and objects\r\nfunctionCall\r\n    : AWAIT? (ID'.')?ID '(' parameters ')'\r\n    ;\r\nobject\r\n    : NEW ID '(' parameters ')'\r\n    | component\r\n    ;\r\nparameters\r\n    : (positionalNamedParameters | positionalParameters | namedParameters | )\r\n    ;\r\npositionalNamedParameters\r\n    : (positionalParameters COMMA)+ namedParameters+\r\n    ;\r\npositionalParameters\r\n    : (parameter COMMA)* parameter COMMA?\r\n    ;\r\nnamedParameters\r\n    : (ID':'parameter COMMA)* ID':'parameter COMMA?\r\n    ;\r\nparameter\r\n    : ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction\r\n    ;\r\n\r\n\r\n//expressions\r\nexpression\r\n    : expression '*' expression\r\n    | expression '/' expression\r\n    | expression '+' expression\r\n    | expression '-' expression\r\n    | number\r\n    | ID\r\n    ;\r\n\r\n\r\n///////////////////////////FLUTTER///////////////////////////\r\ncomponent\r\n    : materialApp\r\n    | scrollView\r\n    | scaffold\r\n    | column\r\n    | row\r\n    | stack\r\n    | text\r\n    | container\r\n    | sizedBox\r\n    | padding\r\n    | inkWell\r\n    | image\r\n    | button\r\n    ;\r\n\r\n\r\nmaterialApp\r\n    : NEW MATERIAL_APP '(' materialAppAtts* ')'\r\n    ;\r\nmaterialAppAtts\r\n    : materialTitle\r\n    | materialHome\r\n    ;\r\nmaterialTitle\r\n    : TITLE':'CHARACTERS COMMA?\r\n    ;\r\nmaterialHome:\r\n    HOME':'object COMMA?\r\n    ;\r\n\r\n\r\nscaffold\r\n    : NEW SCAFFOLD '(' scaffoldAtts* ')'\r\n    ;\r\nscaffoldAtts\r\n    : scaffoldBackground\r\n    | scaffoldBody\r\n    ;\r\nscaffoldBackground\r\n    : BACKGROUND_COLOR':'COLORS COMMA?\r\n    ;\r\nscaffoldBody\r\n    : BODY':'object COMMA?\r\n    ;\r\n\r\n\r\ncolumn:\r\n    NEW COLUMN '(' column_rowAtts* ')'\r\n    ;\r\nrow:\r\n    NEW ROW '(' column_rowAtts* ')'\r\n    ;\r\ncolumn_rowAtts\r\n    : mainAxis\r\n    | crossAxis\r\n    | children\r\n    ;\r\nmainAxis\r\n    : MAIN_AXIS_ALIGNMENT':'ALIGNMENT COMMA?\r\n    ;\r\ncrossAxis\r\n    : CROSS_AXIS_ALIGNMENT':'ALIGNMENT COMMA?\r\n    ;\r\nchildren\r\n    : CHILDREN':'list COMMA?\r\n    ;\r\n\r\n\r\nstack\r\n    : NEW STACK '(' stackAtts* ')'\r\n    ;\r\nstackAtts\r\n    : stackFit\r\n    | children\r\n    ;\r\nstackFit\r\n    : FIT':'STACK_FIT COMMA?\r\n    ;\r\n\r\n\r\ntext:\r\n    NEW TEXT '(' CHARACTERS COMMA? textAtts* ')'\r\n    ;\r\ntextAtts\r\n    : color\r\n    | textSize\r\n    | textStyle\r\n    ;\r\ncolor\r\n    : COLOR':'COLORS COMMA?\r\n    ;\r\ntextSize\r\n    : SIZE':'INT_NUM COMMA?\r\n    ;\r\ntextStyle\r\n    : STYLE':'STYLES COMMA?\r\n    ;\r\n\r\n\r\ncontainer\r\n    : NEW CONTAINER '(' containerAtts* ')'\r\n    ;\r\ncontainerAtts\r\n    : margin\r\n    | width\r\n    | height\r\n    | child\r\n    | color\r\n    ;\r\nmargin\r\n    : MARGIN':'values COMMA?\r\n    ;\r\nwidth\r\n    : WIDTH':'INT_NUM COMMA?\r\n    ;\r\nheight\r\n    : HEIGHT':'INT_NUM COMMA?\r\n    ;\r\nchild\r\n    : CHILD':'object COMMA?\r\n    ;\r\n\r\n\r\nsizedBox\r\n    : NEW SIZEDBOX '(' sizedBoxAtts* ')'\r\n    ;\r\nsizedBoxAtts\r\n    : width\r\n    | height\r\n    | child\r\n    ;\r\n\r\n\r\npadding\r\n    : NEW PADDING '(' paddingAtts* ')'\r\n    ;\r\npaddingAtts\r\n    : VALUES':'values COMMA?\r\n    | child\r\n    ;\r\n\r\nvalues\r\n    : ZERO //values.zero\r\n    | ALL '(' INT_NUM ')' //values.all(5)\r\n    | SYMMETRIC '(' horizontalOrVertical+ ')' //values.symmetric(horizontal: 4, vertical: 8)\r\n    | COSTUME '(' costumeValues+ ')'\r\n    ;\r\nhorizontalOrVertical\r\n    : HORIZONTAL':'INT_NUM COMMA?\r\n    | VERTICAL':' INT_NUM COMMA?\r\n    ;\r\ncostumeValues\r\n    : LEFT':'INT_NUM COMMA?\r\n    | TOP':'INT_NUM COMMA?\r\n    | RIGHT':'INT_NUM COMMA?\r\n    | BOTTOM':'INT_NUM COMMA?\r\n    ;\r\n\r\n\r\ninkWell\r\n    : NEW INK_WELL '(' inkWellAtts* ')'\r\n    ;\r\ninkWellAtts\r\n    : onTap\r\n    | child\r\n    ;\r\nonTap\r\n    : ON_TAP':'(functionCall | unnamedFunction) COMMA? //onTap: (){}\r\n    ;\r\n\r\n\r\nimage\r\n    : NEW IMAGE '(' CHARACTERS COMMA? imageAtts* ')'\r\n    ;\r\nimageAtts\r\n    : imageFit\r\n    | width\r\n    | height\r\n    ;\r\nimageFit\r\n    : FIT':'BOX_FIT COMMA?\r\n    ;\r\n\r\n\r\nbutton\r\n    : NEW BUTTON '(' buttonAtts* ')'\r\n    ;\r\nbuttonAtts\r\n    : onTap\r\n    | child\r\n    | color\r\n    ;\r\n\r\n\r\nscrollView\r\n    : NEW SCROLL_VIEW '(' scrollViewAtts* ')'\r\n    ;\r\nscrollViewAtts\r\n    : scrollDirection\r\n    | child\r\n    ;\r\nscrollDirection\r\n    : SCROLL_DIRECTION':' (HORIZONTAL | VERTICAL) COMMA?\r\n    ;\r\n\r\n\r\n//TOKENS\r\n\r\n//CONDITIONS\r\nIF: 'if';\r\nELSE: 'else';\r\nSWITCH: 'switch';\r\nCASE: 'case';\r\nDEFAULT: 'default';\r\nBREAK: 'break';\r\nCONTINUE: 'continue';\r\n\r\n//LOOPS\r\nWHILE: 'while';\r\nDO: 'do';\r\nFOR: 'for';\r\nFOREACH: 'foreach';\r\n\r\n//TYPES\r\nFINAL: 'final';\r\nCONST: 'const';\r\nVAR: 'var';\r\nDYNAMIC: 'dynamic';\r\nVOID: 'void';\r\nINT: 'int';\r\nDOUBLE: 'double';\r\nSTRING: 'String';\r\nLIST: 'List';\r\nBOOL: 'bool';\r\nTRUE: 'true';\r\nFALSE: 'false';\r\nOBJECT: 'Object';\r\nFUNCTION: 'Function';\r\nRETURN: 'return';\r\nLATE: 'late';\r\nREQUIRED: 'required';\r\nASYNC: 'async';\r\nASYNC_STAR: 'async*';\r\nAWAIT: 'await';\r\n\r\n//OOP\r\nCLASS: 'class';\r\nEXTENDS: 'extends';\r\nINTERFACE: 'interface';\r\nIMPLEMENTS: 'implements';\r\nABSTRACT: 'abstract';\r\nOVERRIDE: '@override';\r\nTHIS: 'this';\r\nSTATIC: 'static';\r\nNEW: 'new';\r\n\r\n//COMMENTS AND WHITE SPACES\r\nWS: ('\\r'?'\\n' | '\\n' | ' ' | '\\t')+ -> skip;\r\nCOMMENT: '//' ~[\\r\\n] -> skip;\r\nMULTILINE_COMMENT: '/*' .*? '*/' -> skip;\r\n\r\n//COMPONENTS\r\nMATERIAL_APP: 'MaterialApp';\r\nTITLE: 'title';\r\nHOME: 'home';\r\n/////////////\r\nSCAFFOLD: 'Scaffold';\r\nBODY: 'body';\r\nBACKGROUND_COLOR: 'backgroundColor';\r\n/////////////\r\nCOLUMN: 'Column';\r\nROW: 'Row';\r\nMAIN_AXIS_ALIGNMENT: 'mainAxisAlignment';\r\nCROSS_AXIS_ALIGNMENT: 'crossAxisAlignment';\r\n/////////////\r\nTEXT: 'Text';\r\nCOLOR: 'color';\r\nSIZE: 'size';\r\nSTYLE: 'style';\r\n/////////////\r\nCONTAINER: 'Container';\r\nSIZEDBOX: 'SizedBox';\r\nWIDTH: 'width';\r\nHEIGHT: 'height';\r\nMARGIN: 'margin';\r\n/////////////\r\nINK_WELL: 'InkWell';\r\n/////////////\r\nIMAGE: 'Image';\r\nFIT: 'fit';\r\nBOX_FIT: 'BoxFit.cover' | 'BoxFit.fill' | 'BoxFit.fitWidth' | 'BoxFit.fitHeight';\r\n/////////////\r\nSTACK: 'Stack';\r\nSTACK_FIT: 'StackFit.expanded' | 'StackFit.loose';\r\n/////////////\r\nBUTTON: 'Button';\r\n/////////////\r\nSCROLL_VIEW: 'ScrollView';\r\nSCROLL_DIRECTION: 'scrollDirection';\r\n/////////////\r\nPADDING: 'Padding';\r\nVALUES: 'values';\r\nZERO: 'Values.zero';\r\nALL: 'Values.all';\r\nSYMMETRIC: 'Values.symmetric';\r\nCOSTUME: 'Values.costume';\r\nLEFT: 'left';\r\nRIGHT: 'right';\r\nTOP: 'top';\r\nBOTTOM: 'bottom';\r\n/////////////\r\nCHILD: 'child';\r\nCHILDREN: 'children';\r\nON_TAP: 'onTap';\r\nCOLORS: 'Purple' | 'Blue' | 'Yellow' | 'Black' | 'White' | 'Green' | 'Red';\r\nSTYLES: 'Italic' | 'Bold' | 'BoldItalic';\r\nALIGNMENT: 'start' | 'center' | 'end' | 'spaceBetween' | 'spaceEvenly' | 'spaceAround';\r\nHORIZONTAL: 'horizontal';\r\nVERTICAL: 'vertical';\r\n\r\n//GENERAL\r\nCOMMA: ',';\r\nSEMICOLON: ';';\r\nINT_NUM: ( '0' | [1-9]+DIGIT* );\r\nDOUBLE_NUM: ( '0.'DIGIT+ | [1-9]+DIGIT* ('.'DIGIT+) );\r\n//اكتر فاصلتين برانيات للتوكن نفسو\r\n//اكتر فاصلتين جوانيات للريغيولر اكسبريشن\r\n//الفاصلتين يلي قبلهن سلاش لينحطو ضمن التوكن نفسو يعني تقريبا يصير سترينغ رسمي\r\nCHARACTERS: '\\''[a-zA-Z0-9!@#$%^&*+_:,.\\-=]*'\\'';\r\nID: '_'?[a-zA-Z]+[0-9]*;\r\n\r\nfragment DIGIT: [0-9];
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/DartGrammars.g4 b/src/DartGrammars.g4
+--- a/src/DartGrammars.g4	(revision d737cbe2d2d241f26fc8c6f399e163a01ca4e2da)
++++ b/src/DartGrammars.g4	(date 1672870868888)
+@@ -565,6 +565,7 @@
+ VERTICAL: 'vertical';
+ 
+ //GENERAL
++
+ COMMA: ',';
+ SEMICOLON: ';';
+ INT_NUM: ( '0' | [1-9]+DIGIT* );
+Index: compiler.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"JAVA_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\" inherit-compiler-output=\"true\">\r\n    <exclude-output />\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <sourceFolder url=\"file://$MODULE_DIR$/src\" isTestSource=\"false\" />\r\n    </content>\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n    <orderEntry type=\"module-library\" exported=\"\">\r\n      <library>\r\n        <CLASSES>\r\n          <root url=\"jar://$MODULE_DIR$/../../../../../Plugins/antlr-4.10.1-complete.jar!/\" />\r\n        </CLASSES>\r\n        <JAVADOC />\r\n        <SOURCES />\r\n      </library>\r\n    </orderEntry>\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/compiler.iml b/compiler.iml
+--- a/compiler.iml	(revision d737cbe2d2d241f26fc8c6f399e163a01ca4e2da)
++++ b/compiler.iml	(date 1672870923665)
+@@ -10,7 +10,7 @@
+     <orderEntry type="module-library" exported="">
+       <library>
+         <CLASSES>
+-          <root url="jar://$MODULE_DIR$/../../../../../Plugins/antlr-4.10.1-complete.jar!/" />
++          <root url="jar://C:/Plugins/antlr-4.10.1-complete.jar!/" />
+         </CLASSES>
+         <JAVADOC />
+         <SOURCES />
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_18\" default=\"true\" project-jdk-name=\"18\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision d737cbe2d2d241f26fc8c6f399e163a01ca4e2da)
++++ b/.idea/misc.xml	(date 1672870923675)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_18" default="true" project-jdk-name="18" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="18" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file

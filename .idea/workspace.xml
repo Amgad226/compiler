@@ -2,11 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5dc27ed2-7e10-4449-80ff-650701fa7b8e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_5_2023_12_21_AM_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_5_2023_12_21_AM__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_5_2023_9_39_PM_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_5_2023_9_39_PM__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/flutter/SizedBox.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/flutter/SizedBoxAtts.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/flutter/SizedBox_child.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/flutter/SizedBox_height.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/flutter/SizedBox_width.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compiler.iml" beforeDir="false" afterPath="$PROJECT_DIR$/compiler.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DartGrammars.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/DartGrammars.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/Type.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/Var.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/VarOrType.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +35,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2JrHb0Xg0YPtg9xPLFWrK1oidsb" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">

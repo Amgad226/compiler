@@ -570,6 +570,7 @@ HORIZONTAL: 'horizontal';
 VERTICAL: 'vertical';
 
 //GENERAL
+
 COMMA: ',';
 SEMICOLON: ';';
 INT_NUM: ( '0' | [1-9]+DIGIT* );
