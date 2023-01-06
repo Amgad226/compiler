@@ -2,9 +2,9 @@ package flutter;
 
 import nodes.UnnamedFunction;
 
-public class Button_OnTop_unnamedFunction extends Button_OnTop{
+public class Button_OnTap_unnamedFunction extends Button_OnTap{
    public UnnamedFunction unnamedFunction;
-   public Button_OnTop_unnamedFunction(UnnamedFunction unnamedFunction){
+   public Button_OnTap_unnamedFunction(UnnamedFunction unnamedFunction){
        this.unnamedFunction=unnamedFunction;
    }
 

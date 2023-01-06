@@ -15,10 +15,14 @@ public class MaterialApp extends Component{
     @Override
     public String toString() {
        String top= new String( "new MaterialApp (" )  ;
-       for (MaterialAppAtts a: materialAppAtts){
-           top = top.concat(a.toString() + "\n");
-       }
-        top = top.concat(");");
+        for (int i = 0; i < materialAppAtts.size(); i++) {
+            if (i == materialAppAtts.size() - 1) {
+                top = top.concat(materialAppAtts.toString() + "\n");
+            } else {
+                top = top.concat(materialAppAtts.toString() + "," + "\n");
+            }
+        }
+        top = top.concat(")");
         return top ;
     }
 }

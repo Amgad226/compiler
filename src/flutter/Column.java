@@ -17,10 +17,14 @@ public class Column extends Component{
     @Override
     public String toString() {
         String top= new String( "new Column (" )  ;
-        for (Column_rowAtts a: column_rowAtts){
-            top = top.concat(a.toString() + "\n");
+        for (int i = 0; i < scrollViewAtts.size(); i++) {
+            if (i == scrollViewAtts.size() - 1) {
+                top = top.concat(column_rowAtts.get(i).toString() + "\n");
+            } else {
+                top = top.concat(column_rowAtts.get(i).toString() + "," + "\n");
+            }
         }
-        top = top.concat(");");
+        top = top.concat(")");
         return top ;
     }
 }

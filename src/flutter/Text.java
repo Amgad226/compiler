@@ -23,10 +23,14 @@ public class Text extends Component{
         String top= new String( "new Text (" )  ;
         top.concat(character);
         top.concat(",");
-        for (TextAtts a: textAtts){
-            top = top.concat(a.toString() + "\n");
+        for (int i = 0; i < textAtts.size(); i++) {
+            if (i == textAtts.size() - 1) {
+                top = top.concat(a.toString() + "\n");
+            } else {
+                top = top.concat(a.toString() + "," + "\n");
+            }
         }
-        top = top.concat(");");
+        top = top.concat(")");
         return top ;
     }
 }

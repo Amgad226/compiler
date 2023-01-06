@@ -12,10 +12,14 @@ public class Costume extends Values{
     @Override
     public String toString() {
         String top= new String( "Values.costume(" )  ;
-        for (CostumeValues a: costumeValues){
-            top = top.concat(a.toString() + ",");
+        for (int i = 0; i < costumeValues.size(); i++) {
+            if (i == costumeValues.size() - 1) {
+                top = top.concat(costumeValues.get(i).toString() + "\n");
+            } else {
+                top = top.concat(costumeValues.get(i).toString() + "," + "\n");
+            }
         }
-        top = top.concat(");");
+        top = top.concat(")");
         return top ;
     }
 }

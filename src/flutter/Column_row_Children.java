@@ -1,7 +1,7 @@
 package flutter;
 
 public  class Column_row_Children extends Column_rowAtts{
-    String list ;
+    ListType list ;
     public Column_row_Children(String list){
         this.list=list;
     }

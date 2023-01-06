@@ -1,7 +1,7 @@
 package flutter;
 
 public class StackChildren extends StackAtts{
-    String list ;
+    ListType list ;
     public StackChildren(String list){
         this.list=list;
     }

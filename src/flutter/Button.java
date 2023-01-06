@@ -17,10 +17,14 @@ public class Button extends Component{
     @Override
     public String toString() {
         String top= new String( "new Button (" )  ;
-        for (ButtonAtts a: buttonAtts){
-            top = top.concat(a.toString() + "\n");
+        for (int i = 0; i < buttonAtts.size(); i++) {
+            if (i == buttonAtts.size() - 1) {
+                top = top.concat(buttonAtts.get(i).toString() + "\n");
+            } else {
+                top = top.concat(buttonAtts.get(i).toString() + "," + "\n");
+            }
         }
-        top = top.concat(");");
+        top = top.concat(")");
         return top ;
     }
 }

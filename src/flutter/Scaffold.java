@@ -18,10 +18,14 @@ public class Scaffold extends Component{
     @Override
     public String toString() {
         String top= new String( "new Scaffold (" )  ;
-        for (ScaffoldAtts a: scaffoldAtts){
-            top = top.concat(a.toString() + "\n");
+        for (int i = 0; i < scaffoldAtts.size(); i++){
+            if(i == scaffoldAtts.size() - 1){
+                top = top.concat(scaffoldAtts.toString()+ "\n");
+            }else {
+                top = top.concat(scaffoldAtts.toString()+","+ "\n");
+            }
         }
-        top = top.concat(");");
+        top = top.concat(")");
         return top ;
     }
 }

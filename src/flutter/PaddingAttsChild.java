@@ -1,9 +1,6 @@
 package flutter;
 
 public class PaddingAttsChild extends PaddingAtts{
-
-
-
     String object ;
 
     public PaddingAttsChild(String object) {

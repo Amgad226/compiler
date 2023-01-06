@@ -20,11 +20,14 @@ public class Padding extends Component{
     @Override
     public String toString() {
         String string=  new String("new Padding(") ;
-        for (PaddingAtts a :paddingAtts) {
-            string=string.concat(a.toString()+ ",");
-
+        for (int i = 0; i < paddingAtts.size(); i++) {
+            if (i == paddingAtts.size() - 1) {
+                top = top.concat(paddingAtts.toString() + "\n");
+            } else {
+                top = top.concat(paddingAtts.toString() + "," + "\n");
+            }
         }
-        string =string.concat(");");
+        string =string.concat(")");
         return string;
 
     }
