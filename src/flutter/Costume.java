@@ -14,9 +14,9 @@ public class Costume extends Values{
         String top= new String( "Values.costume(" )  ;
         for (int i = 0; i < costumeValues.size(); i++) {
             if (i == costumeValues.size() - 1) {
-                top = top.concat(a.toString() + "\n");
+                top = top.concat(costumeValues.get(i).toString() + "\n");
             } else {
-                top = top.concat(a.toString() + "," + "\n");
+                top = top.concat(costumeValues.get(i).toString() + "," + "\n");
             }
         }
         top = top.concat(")");

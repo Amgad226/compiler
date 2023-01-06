@@ -19,9 +19,9 @@ public class Button extends Component{
         String top= new String( "new Button (" )  ;
         for (int i = 0; i < buttonAtts.size(); i++) {
             if (i == buttonAtts.size() - 1) {
-                top = top.concat(a.toString() + "\n");
+                top = top.concat(buttonAtts.get(i).toString() + "\n");
             } else {
-                top = top.concat(a.toString() + "," + "\n");
+                top = top.concat(buttonAtts.get(i).toString() + "," + "\n");
             }
         }
         top = top.concat(")");

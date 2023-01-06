@@ -22,9 +22,9 @@ public class Padding extends Component{
         String string=  new String("new Padding(") ;
         for (int i = 0; i < paddingAtts.size(); i++) {
             if (i == paddingAtts.size() - 1) {
-                top = top.concat(a.toString() + "\n");
+                top = top.concat(paddingAtts.toString() + "\n");
             } else {
-                top = top.concat(a.toString() + "," + "\n");
+                top = top.concat(paddingAtts.toString() + "," + "\n");
             }
         }
         string =string.concat(")");

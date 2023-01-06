@@ -19,9 +19,9 @@ public class Stack extends Component{
         String top= new String( "new Stack (" )  ;
         for (int i = 0; i < stackAtts.size(); i++) {
             if (i == stackAtts.size() - 1) {
-                top = top.concat(a.toString() + "\n");
+                top = top.concat(stackAtts.toString() + "\n");
             } else {
-                top = top.concat(a.toString() + "," + "\n");
+                top = top.concat(stackAtts.toString() + "," + "\n");
             }
         }
         top = top.concat(")");

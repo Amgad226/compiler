@@ -19,9 +19,9 @@ public class SizedBox extends Component{
         String top= new String( "new SizedBox (" )  ;
         for (int i = 0; i < sizedBoxAtts.size(); i++) {
             if (i == sizedBoxAtts.size() - 1) {
-                top = top.concat(a.toString() + "\n");
+                top = top.concat(sizedBoxAtts.toString() + "\n");
             } else {
-                top = top.concat(a.toString() + "," + "\n");
+                top = top.concat(sizedBoxAtts.toString() + "," + "\n");
             }
         }
         top = top.concat(")");

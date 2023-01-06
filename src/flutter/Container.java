@@ -17,10 +17,14 @@ public class Container extends Component{
     @Override
     public String toString() {
         String string=  new String("new Container(") ;
-        for (ContainerAtts a :containerAtts) {
-            string=string.concat(a.toString()+ ",");
+        for (int i = 0; i < containerAtts.size(); i++) {
+            if (i == containerAtts.size() - 1) {
+                top = top.concat(containerAtts.get(i).toString() + "\n");
+            } else {
+                top = top.concat(containerAtts.get(i).toString() + "," + "\n");
+            }
         }
-        string =string.concat(");");
+        string =string.concat(")");
         return string;
     }
 }

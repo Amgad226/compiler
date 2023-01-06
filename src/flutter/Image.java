@@ -25,9 +25,9 @@ public class Image extends Component{
         top.concat(",");
         for (int i = 0; i < imageAtts.size(); i++) {
             if (i == imageAtts.size() - 1) {
-                top = top.concat(a.toString() + "\n");
+                top = top.concat(imageAtts.toString() + "\n");
             } else {
-                top = top.concat(a.toString() + "," + "\n");
+                top = top.concat(imageAtts.toString() + "," + "\n");
             }
         }
         top = top.concat(")");

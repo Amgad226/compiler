@@ -20,9 +20,9 @@ public class ScrollView extends Component{
         String top= new String( "new ScrollView (" )  ;
         for (int i = 0; i < scrollViewAtts.size(); i++) {
             if (i == scrollViewAtts.size() - 1) {
-                top = top.concat(a.toString() + "\n");
+                top = top.concat(scrollViewAtts.toString() + "\n");
             } else {
-                top = top.concat(a.toString() + "," + "\n");
+                top = top.concat(scrollViewAtts.toString() + "," + "\n");
             }
         }
         top = top.concat(")");

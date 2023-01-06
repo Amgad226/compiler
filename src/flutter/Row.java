@@ -21,9 +21,9 @@ public class Row extends Component{
         String top= new String( "new Row (" )  ;
         for (int i = 0; i < column_rowAtts.size(); i++) {
             if (i == column_rowAtts.size() - 1) {
-                top = top.concat(a.toString() + "\n");
+                top = top.concat(column_rowAtts.toString() + "\n");
             } else {
-                top = top.concat(a.toString() + "," + "\n");
+                top = top.concat(column_rowAtts.toString() + "," + "\n");
             }
         }
         top = top.concat(")");

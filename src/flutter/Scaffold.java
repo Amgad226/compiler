@@ -20,9 +20,9 @@ public class Scaffold extends Component{
         String top= new String( "new Scaffold (" )  ;
         for (int i = 0; i < scaffoldAtts.size(); i++){
             if(i == scaffoldAtts.size() - 1){
-                top = top.concat(a.toString()+ "\n");
+                top = top.concat(scaffoldAtts.toString()+ "\n");
             }else {
-                top = top.concat(a.toString()+","+ "\n");
+                top = top.concat(scaffoldAtts.toString()+","+ "\n");
             }
         }
         top = top.concat(")");

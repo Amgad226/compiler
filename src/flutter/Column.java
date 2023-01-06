@@ -19,9 +19,9 @@ public class Column extends Component{
         String top= new String( "new Column (" )  ;
         for (int i = 0; i < scrollViewAtts.size(); i++) {
             if (i == scrollViewAtts.size() - 1) {
-                top = top.concat(a.toString() + "\n");
+                top = top.concat(column_rowAtts.get(i).toString() + "\n");
             } else {
-                top = top.concat(a.toString() + "," + "\n");
+                top = top.concat(column_rowAtts.get(i).toString() + "," + "\n");
             }
         }
         top = top.concat(")");
