@@ -6,7 +6,7 @@ public class FinalDeclaration extends Declaration{
     public Boolean isLate;
     public Type type;
     public String id;
-    public Boolean isInitialized;
+    private final Boolean isInitialized;
     public Initialization init;
 
     public FinalDeclaration(Boolean isLate, Type type, String id, Initialization init){

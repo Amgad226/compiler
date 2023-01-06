@@ -7,13 +7,16 @@ start
 
 
 number
-    : positive | negative
+    : positive      # PositveNumber
+    | negative      # NegativeNumber
     ;
 positive
-    : INT_NUM | DOUBLE_NUM
+    : INT_NUM       # PositiveInteger
+    | DOUBLE_NUM    # PositiveDouble
     ;
 negative
-    : '-' (INT_NUM | DOUBLE_NUM)
+    : '-' INT_NUM       # NegativeInteger
+    | '-' DOUBLE_NUM    # NegativeDouble
     ;
 
 
@@ -119,6 +122,7 @@ initialization
 assignment
     : ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
     | ID'.'ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
+    | THIS'.'ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
     ;
 list
     : '[' ( (listElement COMMA)* listElement)? ']'
@@ -178,22 +182,16 @@ attribute
     : (STATIC? declaration SEMICOLON)
     ;
 method
-    : OVERRIDE? signature ASYNC? methodBody
-    | STATIC signature ASYNC? methodBody
+    : OVERRIDE? signature ASYNC? functionBody
+    | STATIC signature ASYNC? functionBody
     | signature SEMICOLON
     | namedConstructer
     ;
-methodBody
-    : '{' (statement | (thisStatement SEMICOLON))* returnStatement? '}'
-    ;
-thisStatement
-    : THIS'.'ID '=' (ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction)
-    ;
 defaultConstructer
-    : ID '(' consArguments ( (')' SEMICOLON) | (')' methodBody) )
+    : ID '(' consArguments ( (')' SEMICOLON) | (')' functionBody) )
     ;
 namedConstructer
-    : ID'.'ID '(' consArguments ( (')' SEMICOLON) | (')' methodBody) )
+    : ID'.'ID '(' consArguments ( (')' SEMICOLON) | (')' functionBody) )
     ;
 consArguments
     : (consPositionalNamedArguments | consPositionalArguments | consNamedArguments | )
@@ -417,7 +415,8 @@ inkWellAtts
     | child
     ;
 onTap
-    : ON_TAP':'(functionCall | unnamedFunction) COMMA? //onTap: (){}
+    : ON_TAP':' functionCall COMMA?
+    | ON_TAP':' unnamedFunction COMMA?
     ;
 
 

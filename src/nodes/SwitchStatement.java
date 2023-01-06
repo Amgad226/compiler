@@ -1,7 +1,5 @@
 package nodes;
 
-import java.util.List;
-
 public class SwitchStatement extends Statement{
     public String id;
     public SwitchBody body;
