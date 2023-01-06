@@ -2,9 +2,9 @@ package flutter;
 
 import nodes.FunctionCall;
 
-public class Button_OnTop_functionCall extends Button_OnTop{
+public class Inkwell_OnTap_functionCall extends Inkwell_OnTap{
     public FunctionCall functionCall;
-    public Button_OnTop_functionCall(FunctionCall functionCall){
+    public Inkwell_OnTop_functionCall(FunctionCall functionCall){
         this.functionCall=functionCall;
     }
 
