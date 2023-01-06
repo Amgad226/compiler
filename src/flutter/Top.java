@@ -2,7 +2,7 @@ package flutter;
 
 import nodes.PositiveInteger;
 
-public class Top extends Costume{
+public class Top extends CostumeValues{
     PositiveInteger number;
     public Top(PositiveInteger number) {
         this.number = number;
