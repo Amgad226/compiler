@@ -25,9 +25,9 @@ public class Text extends Component{
         top.concat(",");
         for (int i = 0; i < textAtts.size(); i++) {
             if (i == textAtts.size() - 1) {
-                top = top.concat(a.toString() + "\n");
+                top = top.concat(textAtts.get(i).toString() + "\n");
             } else {
-                top = top.concat(a.toString() + "," + "\n");
+                top = top.concat(textAtts.get(i).toString() + "," + "\n");
             }
         }
         top = top.concat(")");

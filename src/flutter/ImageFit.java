@@ -9,7 +9,7 @@ public class ImageFit extends ImageAtts{
 
     @Override
     public String toString() {
-        return  "fit:BoxFit."+BoxFit.toString();
+        return  "fit:BoxFit."+imageFit.toString();
     }
 }
 //    : FIT':'STACK_FIT COMMA?

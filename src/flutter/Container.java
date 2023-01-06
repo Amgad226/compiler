@@ -19,9 +19,9 @@ public class Container extends Component{
         String string=  new String("new Container(") ;
         for (int i = 0; i < containerAtts.size(); i++) {
             if (i == containerAtts.size() - 1) {
-                top = top.concat(containerAtts.get(i).toString() + "\n");
+                string = string.concat(containerAtts.get(i).toString() + "\n");
             } else {
-                top = top.concat(containerAtts.get(i).toString() + "," + "\n");
+                string = string.concat(containerAtts.get(i).toString() + "," + "\n");
             }
         }
         string =string.concat(")");

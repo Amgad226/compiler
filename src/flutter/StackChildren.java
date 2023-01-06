@@ -1,8 +1,10 @@
 package flutter;
 
+import nodes.ListType;
+
 public class StackChildren extends StackAtts{
     ListType list ;
-    public StackChildren(String list){
+    public StackChildren(ListType list){
         this.list=list;
     }
 

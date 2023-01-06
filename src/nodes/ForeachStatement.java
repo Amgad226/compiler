@@ -1,5 +1,7 @@
 package nodes;
 
+import enums.VarOrType;
+
 public class ForeachStatement extends Statement{
 
     public VarOrType type;

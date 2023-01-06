@@ -15,7 +15,7 @@ public class Image extends Component{
         this.character=character;
 
     }
-    public void addImageAtts(TextAtts cm ){
+    public void addImageAtts(ImageAtts cm ){
         imageAtts.add(cm);
     }
     @Override
