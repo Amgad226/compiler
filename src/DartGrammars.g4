@@ -7,13 +7,16 @@ start
 
 
 number
-    : positive | negative
+    : positive  #PositiveNumber
+    | negative  #NegativeNumber
     ;
 positive
-    : INT_NUM | DOUBLE_NUM
+    : INT_NUM #PositiveInteger
+    | DOUBLE_NUM #PositiveDouble
     ;
 negative
-    : '-' (INT_NUM | DOUBLE_NUM)
+    : '-' INT_NUM #NegativeInteger
+    | '-' DOUBLE_NUM #NegativeDouble
     ;
 
 

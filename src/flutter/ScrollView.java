@@ -18,10 +18,14 @@ public class ScrollView extends Component{
     @Override
     public String toString() {
         String top= new String( "new ScrollView (" )  ;
-        for (ScrollViewAtts a: scrollViewAtts){
-            top = top.concat(a.toString() + "\n");
+        for (int i = 0; i < scrollViewAtts.size(); i++) {
+            if (i == scrollViewAtts.size() - 1) {
+                top = top.concat(a.toString() + "\n");
+            } else {
+                top = top.concat(a.toString() + "," + "\n");
+            }
         }
-        top = top.concat(");");
+        top = top.concat(")");
         return top ;
     }
 
