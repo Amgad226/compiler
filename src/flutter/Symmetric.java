@@ -14,10 +14,14 @@ public  class Symmetric extends Values {
     @Override
     public String toString() {
         String top= new String( "Values.symmetric(" )  ;
-        for (HorizontalOrVertical a: horizontalOrVertical){
-            top = top.concat(a.toString() + ",");
+        for (int i = 0; i < horizontalOrVertical.size(); i++) {
+            if (i == horizontalOrVertical.size() - 1) {
+                top = top.concat(a.toString() + "\n");
+            } else {
+                top = top.concat(a.toString() + "," + "\n");
+            }
         }
-        top = top.concat(");");
+        top = top.concat(")");
         return top ;
     }
 }

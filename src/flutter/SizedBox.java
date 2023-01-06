@@ -17,10 +17,14 @@ public class SizedBox extends Component{
     @Override
     public String toString() {
         String top= new String( "new SizedBox (" )  ;
-        for (SizedBoxAtts a: sizedBoxAtts){
-            top = top.concat(a.toString() + "\n");
+        for (int i = 0; i < sizedBoxAtts.size(); i++) {
+            if (i == sizedBoxAtts.size() - 1) {
+                top = top.concat(a.toString() + "\n");
+            } else {
+                top = top.concat(a.toString() + "," + "\n");
+            }
         }
-        top = top.concat(");");
+        top = top.concat(")");
         return top ;
     }
 }

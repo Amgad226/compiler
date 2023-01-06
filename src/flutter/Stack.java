@@ -17,10 +17,14 @@ public class Stack extends Component{
     @Override
     public String toString() {
         String top= new String( "new Stack (" )  ;
-        for (StackAtts a: stackAtts){
-            top = top.concat(a.toString() + "\n");
+        for (int i = 0; i < stackAtts.size(); i++) {
+            if (i == stackAtts.size() - 1) {
+                top = top.concat(a.toString() + "\n");
+            } else {
+                top = top.concat(a.toString() + "," + "\n");
+            }
         }
-        top = top.concat(");");
+        top = top.concat(")");
         return top ;
     }
 }

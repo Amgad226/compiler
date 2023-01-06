@@ -24,9 +24,6 @@ public class Column extends Component{
                 top = top.concat(a.toString() + "," + "\n");
             }
         }
-        for (Column_rowAtts a: column_rowAtts){
-            top = top.concat(a.toString() + "\n");
-        }
         top = top.concat(")");
         return top ;
     }
