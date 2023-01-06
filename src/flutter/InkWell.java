@@ -3,12 +3,12 @@ package flutter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Inkwell extends Component{
+public class InkWell extends Component{
     public List<InkwellAtts> InkwellAtts ;
-    public Inkwell(){
+    public InkWell(){
         this.InkwellAtts= new ArrayList<>();
     }
-    public Inkwell(List<InkwellAtts> listt){
+    public InkWell(List<InkwellAtts> listt){
         this.InkwellAtts= listt;
     }
     @Override

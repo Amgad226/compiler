@@ -2,9 +2,9 @@ package flutter;
 
 import nodes.UnnamedFunction;
 
-public class Inkwell_OnTap_unnamedFunction extends Inkwell_OnTap{
+public class Inkwell_OnTap_UnnamedFunction extends Inkwell_OnTap{
     public UnnamedFunction unnamedFunction;
-    public Inkwell_OnTap_unnamedFunction(UnnamedFunction unnamedFunction){
+    public Inkwell_OnTap_UnnamedFunction(UnnamedFunction unnamedFunction){
         this.unnamedFunction=unnamedFunction;
     }
 
