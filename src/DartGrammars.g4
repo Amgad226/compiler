@@ -91,9 +91,9 @@ forStatement
     : FOR '(' initialCondition SEMICOLON condition SEMICOLON increment')' block
     ;
 initialCondition
-    : (VAR | DOUBLE | INT) ID '=' expression
-    | ID '=' expression
-    | ID
+    : (VAR | DOUBLE | INT) ID '=' expression    # InitialConditionDeclaration
+    | ID '=' expression                         # InitialConditionAssignment
+    | ID                                        # InitialConditionVariable
     ;
 increment
     : ID ('+=' | '-=' | '*=' | '/=') expression
@@ -112,23 +112,22 @@ varOrType
     : VAR | type
     ;
 declaration
-    : LATE? FINAL type? ID initialization?
-    | CONST type? ID initialization
-    | LATE? varOrType ID initialization?
+    : LATE? FINAL type? ID initialization?          # FinalDeclarartion
+    | CONST type? ID initialization                 # ConstDeclarartion
+    | LATE? varOrType ID initialization?            # NormalDeclarartion
     ;
 initialization
     : '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
     ;
 assignment
-    : ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
-    | ID'.'ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
-    | THIS'.'ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)
+    : ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)            # Assign
+    | ID'.'ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)       # ObjectAssign
+    | THIS'.'ID '=' (ID | CHARACTERS | unnamedFunction | functionCall | object | expression | list)     # ThisAssign
     ;
 list
-    : '[' ( (listElement COMMA)* listElement)? ']'
-    ;
-listElement
-    : ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction
+    : '[' ( ((ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction) COMMA)*
+            (ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction))?
+      ']'
     ;
 
 
@@ -137,19 +136,19 @@ voidOrType
     : VOID | type
     ;
 signature
-    : voidOrType? ID arguments
+    : voidOrType? ID '(' arguments ')'
     ;
 function
     : signature ASYNC? functionBody
     ;
 unnamedFunction
-    : arguments ASYNC? functionBody
+    : '(' arguments ')' ASYNC? functionBody
     ;
 arguments
-    : '(' positionalNamedArguments ')'
-    | '(' positionalArguments ')'
-    | '(' namedArguments ')'
-    | '('  ')'
+    : positionalNamedArguments
+    | positionalArguments
+    | namedArguments
+    | zeroArguments
     ;
 positionalNamedArguments
     : (positionalArguments COMMA)+ namedArguments+
@@ -159,6 +158,9 @@ positionalArguments
     ;
 namedArguments
     : '{' (REQUIRED? arg COMMA)* REQUIRED? arg '}'
+    ;
+zeroArguments
+    :
     ;
 arg
     : type? ID
@@ -182,19 +184,19 @@ attribute
     : (STATIC? declaration SEMICOLON)
     ;
 method
-    : OVERRIDE? signature ASYNC? functionBody
-    | STATIC signature ASYNC? functionBody
-    | signature SEMICOLON
-    | namedConstructer
+    : OVERRIDE? signature ASYNC? functionBody                                   # NormalClassMethod
+    | STATIC signature ASYNC? functionBody                                      # StaticClassMethod
+    | signature SEMICOLON                                                       # AbstractClassMethod
+    | ID'.'ID '(' consArguments ( (')' SEMICOLON) | (')' functionBody) )        # NamedConstructor
     ;
 defaultConstructer
     : ID '(' consArguments ( (')' SEMICOLON) | (')' functionBody) )
     ;
-namedConstructer
-    : ID'.'ID '(' consArguments ( (')' SEMICOLON) | (')' functionBody) )
-    ;
 consArguments
-    : (consPositionalNamedArguments | consPositionalArguments | consNamedArguments | )
+    : consPositionalNamedArguments
+    | consPositionalArguments
+    | consNamedArguments
+    | conZeroArgs
     ;
 consPositionalNamedArguments
     : (consPositionalArguments COMMA)+ consNamedArguments+
@@ -204,6 +206,9 @@ consPositionalArguments
     ;
 consNamedArguments
     : '{' (REQUIRED? consArg COMMA)* REQUIRED? consArg '}'
+    ;
+conZeroArgs
+    :
     ;
 consArg
     : (type? ID) | (THIS'.'ID)
@@ -220,10 +225,10 @@ object
     | component
     ;
 parameters
-    : '(' positionalNamedParameters ')'
-    | '(' positionalParameters ')'
-    | '(' namedParameters ')'
-    | '(' ')'
+    : positionalNamedParameters
+    | positionalParameters
+    | namedParameters
+    | zeroParameters
     ;
 positionalNamedParameters
     : (positionalParameters COMMA)+ namedParameters+
@@ -234,6 +239,9 @@ positionalParameters
 namedParameters
     : (ID':'parameter COMMA)* ID':'parameter COMMA?
     ;
+zeroParameters
+    :
+    ;
 parameter
     : ID | CHARACTERS | expression | object | list | functionCall | unnamedFunction
     ;
@@ -241,12 +249,12 @@ parameter
 
 //expressions
 expression
-    : expression '*' expression
-    | expression '/' expression
-    | expression '+' expression
-    | expression '-' expression
-    | number
-    | ID
+    : expression '*' expression     # MultiplicationExpression
+    | expression '/' expression     # DivisionExpression
+    | expression '+' expression     # AddtitionExpression
+    | expression '-' expression     # SubtractExpression
+    | number                        # NumberExpression
+    | ID                            # VariableExpression
     ;
 
 

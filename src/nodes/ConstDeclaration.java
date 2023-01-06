@@ -18,9 +18,9 @@ public class ConstDeclaration extends Declaration{
     @Override
     public String toString() {
         if(type != null){
-            return "const " + type.toString() + " " + id + " " + init.toString();
+            return "const " + type.toString() + " " + id + " " + init.toString() + ";";
         }else {
-            return "const " + id + " " + init.toString();
+            return "const " + id + " " + init.toString() + ";";
         }
     }
 }

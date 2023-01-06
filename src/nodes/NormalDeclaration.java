@@ -33,6 +33,7 @@ public class NormalDeclaration extends Declaration{
         if(isInitialized){
             normalDec = normalDec.concat(init.toString());
         }
+        normalDec = normalDec.concat(";");
         return normalDec;
     }
 }

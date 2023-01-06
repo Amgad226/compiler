@@ -1,6 +1,6 @@
 package nodes;
 
-public class ZeroConsArgs extends ConsArgs{
+public class ConZeroArgs extends ConsArgs{
     @Override
     public String toString() {
         return "()";
