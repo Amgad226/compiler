@@ -2,19 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5dc27ed2-7e10-4449-80ff-650701fa7b8e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_5_2023_12_21_AM_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_5_2023_12_21_AM__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_5_2023_9_39_PM_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_5_2023_9_39_PM__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/flutter/SizedBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/flutter/SizedBoxAtts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/flutter/SizedBox_child.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/flutter/SizedBox_height.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/flutter/SizedBox_width.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_5_2023_12_21_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_5_2023_12_21_AM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_5_2023_9_39_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_5_2023_9_39_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compiler.iml" beforeDir="false" afterPath="$PROJECT_DIR$/compiler.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DartGrammars.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/DartGrammars.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nodes/FinalDeclaration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/FinalDeclaration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nodes/NormalDeclaration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/NormalDeclaration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nodes/SwitchStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/SwitchStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nodes/ZeroConsArgs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ZeroConsArgs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nodes/ZeroParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ZeroParameters.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +21,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -42,18 +40,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Users/ASUS/Desktop/compiler - Copy&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "last_opened_file_path": "D:/Users/ASUS/Desktop/IntelliJ Projects/Course",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="nodes" />

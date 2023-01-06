@@ -6,7 +6,7 @@ public class NormalDeclaration extends Declaration{
     public Boolean isLate;
     public VarOrType type;
     public String id;
-    public Boolean isInitialized;
+    private final Boolean isInitialized;
     public Initialization init;
 
     public NormalDeclaration(Boolean isLate, VarOrType type, String id, Initialization init){
